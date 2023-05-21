@@ -14,10 +14,6 @@ int main(int argc, char **argv)
     int i = 1;
     while (i < argc)
     {
-        if (i != 1)
-        {
-            std::cout << ' ';
-        }
         std::string str = argv[i];
 
         transform (str.begin(), str.end() , str.begin() , toupper);
