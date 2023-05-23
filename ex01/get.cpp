@@ -1,6 +1,6 @@
 #include "phonebook.hpp"
 
-//メンバイニシャライザ
+//メンバイニシャライザ　初期化
 PhoneBook::PhoneBook() : firstName(""), lastName(""), \
 nickname(""), phoneNumber(""), darkestSecret("")
 {
@@ -8,7 +8,8 @@ nickname(""), phoneNumber(""), darkestSecret("")
 }
 
 
-std::string PhoneBook::getter_firstName(void)
+// constをつけることでオブジェクトの状態を変化しない事を明示的に示す
+std::string PhoneBook::getFirstName(void) const
 {
     return (PhoneBook::firstName);
 }

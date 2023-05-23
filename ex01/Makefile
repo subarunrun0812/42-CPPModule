@@ -5,6 +5,8 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 SOURCES = set.cpp \
 		  get.cpp \
 		  main.cpp \
+		  add.cpp \
+		  search.cpp \
 
 all: $(NAME) 
 
