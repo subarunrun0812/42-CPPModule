@@ -1,10 +1,12 @@
 #include "phonebook.hpp"
 
-void ft_search(void)
+void PhoneBook::ft_search(void)
 {
     // 連絡先を全て表示
-    // TODO:直接privateアクセスの変数の値を変えたいので、ここでインスタンスを生成してはいけない
-    PhoneBook phoneBook;//PhoneBookクラスのインスタンスを作成
-    std::cout << "=== INFO ===";
-    std::cout << phoneBook.getFirstName() << std::endl;
+    std::cout << "====== INFO ======" << std::endl;
+    std::cout << "firstname :" << getFirstName() << std::endl;
+    std::cout << "lastname :" << getLastName() << std::endl;
+    std::cout << "nickname :" << getNickName() << std::endl;
+    std::cout << "phone number :" << getPhoneNumber() << std::endl;
+    std::cout << "darkest secret :" << getDarkestSecret() << std::endl;
 }

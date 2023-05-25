@@ -10,16 +10,14 @@ int main(void)
         std::cout << ">";
         std::cin >> cmd;
 
-        if (cmd == "")
-            ;
-        else if (cmd == "ADD")
-            ft_add();
-        else if (cmd == "SEARCH")
-            ft_search();
-        else if (cmd == "EXIT")
+        if (cmd == "ADD" || cmd == "add")
+            phoneBook.ft_add();
+        else if (cmd == "SEARCH" || cmd == "search")
+            phoneBook.ft_search();
+        else if (cmd == "EXIT" || cmd == "exit")
             break;
         else
-            std::cout << "Please enter ADD, SEARCH, or EXIT" << std::endl;
+            std::cout << "Command is incorrect." << std::endl;
     }
     return (0);
 }

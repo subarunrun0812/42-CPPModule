@@ -13,3 +13,23 @@ std::string PhoneBook::getFirstName(void) const
 {
     return (PhoneBook::firstName);
 }
+
+std::string PhoneBook::getLastName(void) const
+{
+    return (PhoneBook::lastName);
+}
+
+std::string PhoneBook::getNickName(void) const
+{
+    return (PhoneBook::nickname);
+}
+
+std::string PhoneBook::getPhoneNumber(void) const
+{
+    return (PhoneBook::phoneNumber);
+}
+
+std::string PhoneBook::getDarkestSecret(void) const
+{
+    return (PhoneBook::darkestSecret);
+}

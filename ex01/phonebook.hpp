@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string>
 
-void ft_search(void);
-void ft_add(void);
 // 電話帳のクラス
 class PhoneBook
 {
@@ -19,10 +17,21 @@ class PhoneBook
         PhoneBook(); //コンストラクタ関数
         // getter
         std::string getFirstName(void) const;
+        std::string getLastName(void) const;
+        std::string getNickName(void) const;
+        std::string getPhoneNumber(void) const;
+        std::string getDarkestSecret(void) const;
+
        // privateアクセスのメンバ変数を読み書きしたいため、getter,setter関数を用意する
 
        //setter
         void setFirstName(std::string str);
+        void setLastName(std::string str);
+        void setNickName(std::string str);
+        void setPhoneNumber(std::string str);
+        void setDarkestSecret(std::string str);
+        void ft_search(void);
+        void ft_add(void);
 
 };
 
