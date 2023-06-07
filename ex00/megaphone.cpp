@@ -4,6 +4,11 @@
 #include <cstdlib>
 #include <algorithm>
 
+char my_toupper(char ch)
+{
+    return (std::toupper(ch));
+}
+
 int main(int argc, char **argv)
 {
     if (argc < 2)
@@ -14,10 +19,12 @@ int main(int argc, char **argv)
     int i = 1;
     while (i < argc)
     {
-        std::string str = argv[i];
-
-        transform (str.begin(), str.end() , str.begin() , toupper);
-        std::cout << str;
+        int j = 0;
+        while (argv[i][j] != '\0')
+        {
+            std::cout << my_toupper(argv[i][j]);
+            j++;
+        }
         i++;
     }
     std::cout << std::endl;

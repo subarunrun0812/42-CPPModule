@@ -32,6 +32,7 @@ class PhoneBook
         void setDarkestSecret(std::string str);
         void ft_search(void);
         void ft_add(void);
+        void empty_error(void);
 
 };
 

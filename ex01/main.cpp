@@ -1,5 +1,6 @@
 #include "phonebook.hpp"
 
+//TODO: 8つの連絡先を保存できるようにする
 int main(void)
 {
     PhoneBook phoneBook;//PhoneBookクラスのインスタンスを作成
