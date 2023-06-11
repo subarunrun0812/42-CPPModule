@@ -100,38 +100,43 @@ void Contact::ft_add(void)
     setDarkestSecret(str);
 }
 
-//TODO:条件を満たす
+//TODO:テキストの右寄せ
+// strの長さが10より長い場合は、10文字目以降を"."で置き換える。
+// 10文字未満の場合は空白で埋める。
+std::string Contact::formatString(std::string str)
+{
+    if (10 < str.length())
+        str = str.replace(10, str.length() - 10, "."); //文字列を置き換える
+    else
+        for (unsigned long j = 0; j < 10 - str.length(); j++)
+            str += " ";
+    return str;
+}
+
+// 文字列を|で囲って表示する。
+void Contact::printColumn(std::string str)
+{
+    std::cout << "|" << str << "|"<< std::endl;
+}
+
+// これらの関数をft_view内で呼び出す。
 void Contact::ft_view(void)
 {
-    int i;
-    i = 0;
-    std::string str;
-
     // 連絡先を全て表示
     std::cout << "====== INFO ======" << std::endl;
 
-    str = getFirstName();
-    if (10 < str.length())
-        str = str.replace(10, str.length() - 10, "."); //文字列を置き換える
-    std::cout << "firstname :" << str << std::endl;
+    std::cout << "firstname     ";
+    printColumn(formatString(getFirstName()));
 
-    str = getLastName();
-    if (10 < str.length())
-        str = str.replace(10, str.length() - 10, ".");
-    std::cout << "lastname :" << str << std::endl;
+    std::cout << "lastname      ";
+    printColumn(formatString(getLastName()));
 
-    str = getNickName();
-    if (10 < str.length())
-        str = str.replace(10, str.length() - 10, ".");
-    std::cout << "nickname :" << str << std::endl;
+    std::cout << "nickname      ";
+    printColumn(formatString(getNickName()));
 
-    str = getPhoneNumber();
-    if (10 < str.length())
-        str = str.replace(10, str.length() - 10, ".");
-    std::cout << "phone number :" << str << std::endl;
+    std::cout << "phone number  ";
+    printColumn(formatString(getPhoneNumber()));
 
-    str = getDarkestSecret();
-    if (10 < str.length())
-        str = str.replace(10, str.length() - 10, ".");
-    std::cout << "darkest secret :" << str << std::endl;
+    std::cout << "darkest secret";
+    printColumn(formatString(getDarkestSecret()));
 }
