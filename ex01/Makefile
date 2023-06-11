@@ -2,11 +2,9 @@ NAME = ex01
 CC = g++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-SOURCES = set.cpp \
-		  get.cpp \
-		  main.cpp \
-		  add.cpp \
-		  search.cpp \
+SOURCES = main.cpp \
+		  phonebook.cpp \
+		  contact.cpp \
 
 all: $(NAME) 
 

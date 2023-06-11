@@ -3,9 +3,10 @@
 
 #include <iostream>
 #include <string>
+#define MAX_SIZE 8
 
 // 電話帳のクラス
-class PhoneBook
+class Contact
 {
     private:
         std::string firstName;
@@ -14,7 +15,10 @@ class PhoneBook
         std::string phoneNumber;
         std::string darkestSecret;
     public: //公開メンバ
-        PhoneBook(); //コンストラクタ関数
+        //Default constructor
+        Contact();
+        //Destructor
+        ~Contact();
         // getter
         std::string getFirstName(void) const;
         std::string getLastName(void) const;
@@ -30,14 +34,22 @@ class PhoneBook
         void setNickName(std::string str);
         void setPhoneNumber(std::string str);
         void setDarkestSecret(std::string str);
-        void ft_search(void);
+
+        void ft_view(void);
         void ft_add(void);
         void empty_error(void);
-
 };
 
-// 連絡先のクラス
-
-
+// 連絡先の配列にアクセスするクラス
+class PhoneBook
+{
+    private:
+        Contact contacts[MAX_SIZE];
+    public:
+        PhoneBook();
+        ~PhoneBook();
+        void add_contact(void);
+        void view_contact(void);
+};
 
 #endif
