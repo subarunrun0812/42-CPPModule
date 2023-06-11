@@ -13,9 +13,9 @@ int main(void)
         std::getline(std::cin, cmd);
 
         if (cmd == "ADD" || cmd == "add")
-            contact.ft_add();
+            phonebook.add_contact();
         else if (cmd == "SEARCH" || cmd == "search")
-            contact.ft_view();
+            phonebook.view_contact();
         else if (cmd == "EXIT" || cmd == "exit")
             break;
         else

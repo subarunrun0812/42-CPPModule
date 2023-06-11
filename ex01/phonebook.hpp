@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#define MAX_SIZE 8
+#define MAX_SIZE 2
 
 // 電話帳のクラス
 class Contact
@@ -17,8 +17,6 @@ class Contact
     public: //公開メンバ
         //Default constructor
         Contact();
-        //Destructor
-        ~Contact();
         // getter
         std::string getFirstName(void) const;
         std::string getLastName(void) const;
@@ -47,7 +45,6 @@ class PhoneBook
         Contact contacts[MAX_SIZE];
     public:
         PhoneBook();
-        ~PhoneBook();
         void add_contact(void);
         void view_contact(void);
 };

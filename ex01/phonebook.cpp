@@ -2,12 +2,8 @@
 
 PhoneBook::PhoneBook()
 {
+    //自動的にメンバ変数を初期化してくれる
 }
-
-PhoneBook::~PhoneBook()
-{
-}
-
 
 void PhoneBook::add_contact(void)
 {

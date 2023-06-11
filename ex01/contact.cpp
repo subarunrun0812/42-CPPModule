@@ -5,10 +5,6 @@ Contact::Contact()
 {
 }
 
-Contact::~Contact()
-{
-}
-
 // constをつけることでオブジェクトの状態を変化しない事を明示的に示す
 std::string Contact::getFirstName(void) const
 {
@@ -63,64 +59,79 @@ void Contact::setDarkestSecret(std::string str)
 
 void Contact::empty_error(void)
 {
-    std::cout << "\x1b[31mError:empty string\x1b[0m" << std::endl;
+    std::cout << "\x1b[31mError:empty string\x1b[0m" << std::endl << std::endl;
     ft_add();
 }
 
 // 連絡先の情報を追加するよう促す
 void Contact::ft_add(void)
 {
-    std::string firstName;
+    std::string str;
+
     std::cout << "Input" << std::endl;
     std::cout << "first name    : ";
-    std::getline(std::cin, firstName);
-    //TODO:emptyの条件式に入らない
-    if (firstName.empty())
-    {
-        std::cout << "から" << std::endl;
+    std::getline(std::cin, str);
+    if (str.empty())
         empty_error();
-    }
-    setFirstName(firstName);
+    setFirstName(str);
 
-    std::string lastName;
     std::cout << "last name     : ";
-    std::getline(std::cin, lastName);
-    // if (lastName.empty())
-    //     empty_error();
-    setLastName(lastName);
+    std::getline(std::cin, str);
+    if (str.empty())
+        empty_error();
+    setLastName(str);
 
-    std::string nickName;
     std::cout << "nick name     : ";
-    std::getline(std::cin, nickName);
-    // if (nickName.empty())
-    //     empty_error();
-    setNickName(nickName);
+    std::getline(std::cin, str);
+    if (str.empty())
+        empty_error();
+    setNickName(str);
 
-    std::string phoneNumber;
     std::cout << "phone number  : ";
-    std::getline(std::cin, phoneNumber);
-    // if (phoneNumber.empty())
-    //     empty_error();
-    setPhoneNumber(phoneNumber);
+    std::getline(std::cin, str);
+    if (str.empty())
+        empty_error();
+    setPhoneNumber(str);
 
-    std::string darkestSecret;
     std::cout << "darkest secret: ";
-    std::getline(std::cin, darkestSecret);
-    // if (darkestSecret.empty())
-    //     empty_error();
-    setDarkestSecret(darkestSecret);
+    std::getline(std::cin, str);
+    if (str.empty())
+        empty_error();
+    setDarkestSecret(str);
 }
 
+//TODO:条件を満たす
 void Contact::ft_view(void)
 {
     int i;
     i = 0;
+    std::string str;
 
     // 連絡先を全て表示
     std::cout << "====== INFO ======" << std::endl;
-    std::cout << "firstname :" << getFirstName() << std::endl;
-    std::cout << "lastname :" << getLastName() << std::endl;
-    std::cout << "nickname :" << getNickName() << std::endl;
-    std::cout << "phone number :" << getPhoneNumber() << std::endl;
-    std::cout << "darkest secret :" << getDarkestSecret() << std::endl;
+
+    str = getFirstName();
+    if (10 < str.length())
+        str = str.replace(10, str.length() - 10, "."); //文字列を置き換える
+    std::cout << "firstname :" << str << std::endl;
+
+    str = getLastName();
+    if (10 < str.length())
+        str = str.replace(10, str.length() - 10, ".");
+    std::cout << "lastname :" << str << std::endl;
+
+    str = getNickName();
+    if (10 < str.length())
+        str = str.replace(10, str.length() - 10, ".");
+    std::cout << "nickname :" << str << std::endl;
+
+    str = getPhoneNumber();
+    if (10 < str.length())
+        str = str.replace(10, str.length() - 10, ".");
+    std::cout << "phone number :" << str << std::endl;
+
+    str = getDarkestSecret();
+    if (10 < str.length())
+        str = str.replace(10, str.length() - 10, ".");
+    std::cout << "darkest secret :" << str << std::endl;
 }
