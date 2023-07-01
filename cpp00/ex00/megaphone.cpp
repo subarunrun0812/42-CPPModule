@@ -1,9 +1,9 @@
-// 小文字を大文字に変換する
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #include <algorithm>
 
+// 小文字を大文字に変換する
 char my_toupper(char ch)
 {
     return (std::toupper(ch));
