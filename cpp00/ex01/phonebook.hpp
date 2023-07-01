@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#define MAX_SIZE 2
+#define MAX_SIZE 8
 
 // 電話帳のクラス
 class Contact
@@ -17,15 +17,13 @@ class Contact
     public: //公開メンバ
         //Default constructor
         Contact();
+        // privateアクセスのメンバ変数を読み書きしたいため、getter,setter関数を用意する
         // getter
         std::string getFirstName(void) const;
         std::string getLastName(void) const;
         std::string getNickName(void) const;
         std::string getPhoneNumber(void) const;
         std::string getDarkestSecret(void) const;
-
-       // privateアクセスのメンバ変数を読み書きしたいため、getter,setter関数を用意する
-
        //setter
         void setFirstName(std::string str);
         void setLastName(std::string str);

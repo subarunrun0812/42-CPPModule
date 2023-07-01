@@ -140,7 +140,7 @@ void Contact::printColumn(std::string str)
 void Contact::ft_view(void)
 {
     // 連絡先を全て表示
-    std::cout << "====== INFO ======" << std::endl;
+    std::cout << "========= INFO ===========" << std::endl;
 
     std::cout << "firstname     ";
     printColumn(formatString(getFirstName()));
