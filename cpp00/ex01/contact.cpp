@@ -28,6 +28,7 @@ std::string Contact::getPhoneNumber(void) const
 
 std::string Contact::getDarkestSecret(void) const
 {
+    //return (this->darkestSecret);
     return (Contact::darkestSecret);
 }
 
@@ -49,12 +50,12 @@ void Contact::setNickName(std::string str)
 
 void Contact::setPhoneNumber(std::string str)
 {
-     phoneNumber = str;
+    phoneNumber = str;
 }
 
 void Contact::setDarkestSecret(std::string str)
 {
-     darkestSecret = str;
+    darkestSecret = str;
 }
 
 void Contact::empty_error(void)
@@ -72,7 +73,12 @@ void Contact::ft_add(void)
     std::cout << "first name    : ";
     std::getline(std::cin, str);
     if (str.empty())
+    {
         empty_error();
+        //TODO:returnを返す必要がある
+        
+    }
+    std::cin.clear();
     setFirstName(str);
 
     std::cout << "last name     : ";

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#define MAX_SIZE 8
+#define MAX_SIZE 2
 
 // 電話帳のクラス
 class Contact
