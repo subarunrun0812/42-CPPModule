@@ -100,23 +100,40 @@ void Contact::ft_add(void)
     setDarkestSecret(str);
 }
 
-//TODO:テキストの右寄せ
 // strの長さが10より長い場合は、10文字目以降を"."で置き換える。
 // 10文字未満の場合は空白で埋める。
 std::string Contact::formatString(std::string str)
 {
+    std::string res;
+    // std::cout << "strの長さは" << str.length() << std::endl;
     if (10 < str.length())
-        str = str.replace(10, str.length() - 10, "."); //文字列を置き換える
+    {
+        str = str.replace(9, str.length() - 10, ".");//文字列を置き換える
+        for (int i = 0; i < 10; i++)
+        {
+            res += str[i];
+            // std::cout << "res[" << i << "]=" << res[i] << std::endl;
+        }
+    }
     else
-        for (unsigned long j = 0; j < 10 - str.length(); j++)
-            str += " ";
-    return str;
+        res = str;
+    return res;
 }
 
 // 文字列を|で囲って表示する。
 void Contact::printColumn(std::string str)
 {
-    std::cout << "|" << str << "|"<< std::endl;
+    std::cout << "|";
+    int space_len = 10 - str.length();
+    // std::cout << "str = \"" << str << "\""<< std::endl;
+    // std::cout << "space_lenの長さは" << space_len << std::endl;
+    for (int i = 0; i < space_len ; i++)
+    {
+        // std::cout << "iの長さは" << i << std::endl;
+        std::cout << " ";
+    }
+    std::cout << str;
+    std::cout << "|" << std::endl;
 }
 
 // これらの関数をft_view内で呼び出す。
