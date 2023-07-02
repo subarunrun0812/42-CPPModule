@@ -1,6 +1,7 @@
 #include "phonebook.hpp"
 
 //クラスの初期化にデフォルトコンストラクタを使用
+//少なくとも、コンストラクタを1つ定義する必要がある。
 Contact::Contact()
 {
 }
@@ -8,28 +9,28 @@ Contact::Contact()
 // constをつけることでオブジェクトの状態を変化しない事を明示的に示す
 std::string Contact::getFirstName(void) const
 {
-    return (Contact::firstName);
+    return (this->firstName);
 }
 
 std::string Contact::getLastName(void) const
 {
-    return (Contact::lastName);
+    return (this->lastName);
 }
 
 std::string Contact::getNickName(void) const
 {
-    return (Contact::nickname);
+    return (this->nickname);
 }
 
 std::string Contact::getPhoneNumber(void) const
 {
-    return (Contact::phoneNumber);
+    return (this->phoneNumber);
 }
 
 std::string Contact::getDarkestSecret(void) const
 {
     //return (this->darkestSecret);
-    return (Contact::darkestSecret);
+    return (this->darkestSecret);
 }
 
 void Contact::setFirstName(std::string str)
@@ -71,38 +72,38 @@ void Contact::ft_add(void)
 
     std::cout << "Input" << std::endl;
     std::cout << "first name    : ";
-    std::getline(std::cin, str);
-    if (str.empty())
-    {
-        empty_error();
-        //TODO:returnを返す必要がある
-        
+    if (!std::getline(std::cin, str)) 
+	{
+    	// Ctrl-D が押された、あるいは他の入力エラーが発生した
+ 		std::cin.clear(); // エラー状態をリセット
+    	exit;
     }
-    std::cin.clear();
+    if (str.empty())
+        return (empty_error());
     setFirstName(str);
 
     std::cout << "last name     : ";
     std::getline(std::cin, str);
     if (str.empty())
-        empty_error();
+        std::cin.clear();
     setLastName(str);
 
     std::cout << "nick name     : ";
     std::getline(std::cin, str);
     if (str.empty())
-        empty_error();
+        std::cin.clear();
     setNickName(str);
 
     std::cout << "phone number  : ";
     std::getline(std::cin, str);
     if (str.empty())
-        empty_error();
+        std::cin.clear();
     setPhoneNumber(str);
 
     std::cout << "darkest secret: ";
     std::getline(std::cin, str);
     if (str.empty())
-        empty_error();
+        std::cin.clear();
     setDarkestSecret(str);
 }
 
