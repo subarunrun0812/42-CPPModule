@@ -9,8 +9,9 @@
 class Zombie
 {
 	private:
-		void announce(void);
+		std::string name;
 	public:
+		void announce(void);
 
 }
 
