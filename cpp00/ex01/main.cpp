@@ -1,6 +1,5 @@
 #include "phonebook.hpp"
 
-//TODO: 8つの連絡先を保存できるようにする
 int main(void)
 {
     Contact contact;//Contactクラスのインスタンスを作成
@@ -18,8 +17,20 @@ int main(void)
             phonebook.view_contact();
         else if (cmd == "EXIT" || cmd == "exit")
             break;
+        else if (std::cin.eof())
+        {
+            //ctrl-dが押された時
+            std::cin.clear();
+            return (1);
+        }
+        else if (cmd.empty())
+        {
+            std::cin.clear();
+        }
         else
+        {
             std::cout << "Command is incorrect." << std::endl;
+        }
     }
     return (0);
 }

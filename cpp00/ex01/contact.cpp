@@ -1,7 +1,7 @@
 #include "phonebook.hpp"
 
 //クラスの初期化にデフォルトコンストラクタを使用
-//少なくとも、コンストラクタを1つ定義する必要がある。
+//コンストラクタを1つも定義しない場合エラーが発生する。
 Contact::Contact()
 {
 }
@@ -62,48 +62,56 @@ void Contact::setDarkestSecret(std::string str)
 void Contact::empty_error(void)
 {
     std::cout << "\x1b[31mError:empty string\x1b[0m" << std::endl << std::endl;
-    ft_add();
 }
 
-// 連絡先の情報を追加するよう促す
+//[& str]参照渡し
+bool Contact::getInput(std::string& str)
+{
+    if (!std::getline(std::cin, str)) 
+    {
+        // Ctrl-D が押された
+        std::cin.clear();
+        return false;
+    }
+    if (str.empty())
+    {
+        std::cin.clear();
+        empty_error();
+        ft_add();
+        return false;
+    }
+    return true;
+}
+
 void Contact::ft_add(void)
 {
     std::string str;
 
     std::cout << "Input" << std::endl;
+
     std::cout << "first name    : ";
-    if (!std::getline(std::cin, str)) 
-	{
-    	// Ctrl-D が押された、あるいは他の入力エラーが発生した
- 		std::cin.clear(); // エラー状態をリセット
-    	exit;
-    }
-    if (str.empty())
-        return (empty_error());
+    if (!getInput(str))
+        return ;
     setFirstName(str);
 
     std::cout << "last name     : ";
-    std::getline(std::cin, str);
-    if (str.empty())
-        std::cin.clear();
+    if (!getInput(str))
+        return ;
     setLastName(str);
 
     std::cout << "nick name     : ";
-    std::getline(std::cin, str);
-    if (str.empty())
-        std::cin.clear();
+    if (!getInput(str))
+        return ;
     setNickName(str);
 
     std::cout << "phone number  : ";
-    std::getline(std::cin, str);
-    if (str.empty())
-        std::cin.clear();
+    if (!getInput(str))
+        return ;
     setPhoneNumber(str);
 
     std::cout << "darkest secret: ";
-    std::getline(std::cin, str);
-    if (str.empty())
-        std::cin.clear();
+    if (!getInput(str))
+        return ;
     setDarkestSecret(str);
 }
 

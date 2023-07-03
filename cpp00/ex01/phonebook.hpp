@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#define MAX_SIZE 2
+#define MAX_SIZE 8
 
 // 電話帳のクラス
 class Contact
@@ -32,6 +32,7 @@ class Contact
         void setDarkestSecret(std::string str);
 
         void ft_view(void);
+        bool getInput(std::string& str);
         void ft_add(void);
         void empty_error(void);
         std::string formatString(std::string str);
