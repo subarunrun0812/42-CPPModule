@@ -12,15 +12,11 @@ class Zombie
 		std::string name;
 	public:
 		//コンストラクタ
-		Zombie();
+		Zombie(std::string zombieName);
 		//デストラクタ
 		~Zombie();
 		void announce(void);
-		std::string get_name(void);
-		void set_name(std::string);
-
-}
-
+};
 
 void randomChump( std::string name );
 
