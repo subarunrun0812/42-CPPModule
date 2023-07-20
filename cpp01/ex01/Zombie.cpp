@@ -1,6 +1,10 @@
 #include "Zombie.hpp"
 
-//TODO:デストラクタを作成
+void Zombie::setName(std::string zombieName)
+{
+	this->name = zombieName;
+}
+
 Zombie::~Zombie()
 {
 	std::cout << this->name << ": has been destroyed" << std::endl;

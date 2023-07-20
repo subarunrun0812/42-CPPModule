@@ -1,11 +1,12 @@
-NAME = ex00
+NAME = ex01
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SOURCES = newZombie.cpp \
 		  randomChump.cpp \
 		  main.cpp \
-		  Zombie.cpp
+		  zombieHorde.cpp \
+		  Zombie.cpp \
 
 all : $(NAME)
 
