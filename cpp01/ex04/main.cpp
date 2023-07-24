@@ -43,7 +43,6 @@ int main(int argc, char** argv)
 	std::string replacedContent;
 	//fileから1行ずつ読み込んでいく
 	while (std::getline(inFile, line)) {
-		std::cout << "test1" << std::endl;
 		replacedContent += strReplace(line, s1, s2) + "\n";
 	}
 	inFile.close();

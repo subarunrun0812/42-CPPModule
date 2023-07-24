@@ -2,11 +2,9 @@ NAME = ex01
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SOURCES = newZombie.cpp \
-		  randomChump.cpp \
+SOURCES = Zombie.cpp \
 		  main.cpp \
-		  zombieHorde.cpp \
-		  Zombie.cpp \
+		  zombieHorde.cpp
 
 all : $(NAME)
 
