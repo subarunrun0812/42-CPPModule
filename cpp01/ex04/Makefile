@@ -1,11 +1,8 @@
-NAME = ex03
+NAME = ex04
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SOURCES = main.cpp \
-		  HumanA.cpp \
-		  HumanB.cpp \
-		  Weapon.cpp \
 
 all : $(NAME)
 
