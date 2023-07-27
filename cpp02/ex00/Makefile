@@ -1,8 +1,9 @@
-NAME = ex02
+NAME = ex00
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SOURCES = main.cpp
+SOURCES = main.cpp \
+		  Fixed.cpp
 
 all : $(NAME)
 

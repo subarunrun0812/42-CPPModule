@@ -25,7 +25,6 @@ void Harl::complain(std::string level)
 {
 	//std::map コンテナ
 	// このマップのキーはstd::string型で、値はHarlクラスのメンバ関数を指す関数ポインタ
-	//TODO: cpp-01ではコンテナは使用禁止
 	std::map<std::string, void (Harl::*)()> levelFuncs;
 	levelFuncs["DEBUG"] = &Harl::debug;
 	levelFuncs["INFO"] = &Harl::info;
