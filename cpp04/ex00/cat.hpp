@@ -2,13 +2,15 @@
 #define CAT_HPP
 
 #include "animal.hpp"
-
+#include "Brain.hpp"
 class Cat : public Animal
 {
-	public:
-		Cat();
-		~Cat();
-		void makeSound() const;
+private:
+	Brain* brain;
+public:
+	Cat();
+	~Cat();
+	void makeSound() const;
 };
 
 #endif
