@@ -19,6 +19,7 @@ class Fixed
 		Fixed(const int int_val);
 		//浮動小数点を受け取るコンストラクタ
 		Fixed(const float float_val);
+		//TODO: friendを削除
 		//固定小数点数を浮動小数点数の形式で出力ストリームに挿入できるようにします
 		//非メンバ関数として扱われるため、friend関数にする必要がある
 		//最初の引数がstreamで、このメンバ関数が呼び出されるインスタンスがストリームに
