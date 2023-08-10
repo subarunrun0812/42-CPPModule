@@ -1,12 +1,9 @@
-NAME = ex02
+NAME = ex00
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SOURCES = main.cpp\
-			animal.cpp\
-			cat.cpp\
-			dog.cpp\
-			Brain.cpp\
+			Bureaucrat.cpp\
 
 all : $(NAME)
 
