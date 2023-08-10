@@ -32,6 +32,7 @@ void Harl::complain(std::string level)
 	levelFuncs["WARNING"] = &Harl::warning;
 	levelFuncs["ERROR"] = &Harl::error;
 
+	// if,else文は使用禁止
 	if (levelFuncs.count(level) > 0)
 	{
 		//対応するメンバ関数を呼び出しています。関数ポインタを使用して、
