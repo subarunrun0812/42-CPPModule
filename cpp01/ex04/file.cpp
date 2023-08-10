@@ -1,41 +1,5 @@
 #include "file.hpp"
 
-// std::string strReplace(std::string line, std::string s1, std::string s2)
-// {
-// 	size_t pos = 0;
-// 	//find(検索する文字列、検索を開始する位置) = 指定した部分文字列が文字列中のどの位置で最初に現れるかを探します.
-// 	//findメソッドは、検索対象の部分文字列が見つからない場合、std::string::nposを返す。
-// 	std::cout << "test0" << std::endl;
-// 	while (((pos = line.find(s1, pos)) != std::string::npos))
-// 	{
-// 		std::cout << "pos = " << pos << std::endl;
-// 		bool flag = false;
-// 		for (size_t i = 0; i < s1.length(); i++)
-// 		{
-// 			flag = true;
-// 			std::cout << "i = " << i << std::endl;
-// 			if (line[pos+i] != s1[i])
-// 			{
-// 				flag = false;
-// 				std::cout << "test1" << std::endl;
-// 				break;
-// 			}
-// 		}
-// 		if (flag == true)
-// 		{
-// 			//pos番目からs2の文字列分、lineに文字列を削除する。
-// 			line.erase(pos, s1.length());
-// 			//pos番目からs2の文字列分、lineに文字列を複製する。
-// 			line.insert(pos, s2);
-// 			pos += s2.length();
-// 		}
-// 		else
-// 		{
-// 			pos += s1.length();
-// 		}
-// 	}
-// 	return (line);
-// }
 std::string strReplace(std::string line, std::string s1, std::string s2)
 {
 	size_t pos = 0;
