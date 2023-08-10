@@ -1,6 +1,6 @@
 NAME = ex00
-CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CC = c++
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SOURCES = newZombie.cpp \
 		  randomChump.cpp \
