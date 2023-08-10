@@ -19,10 +19,9 @@ class Fixed
 		Fixed(const int int_val);
 		//浮動小数点を受け取るコンストラクタ
 		Fixed(const float float_val);
-		//固定小数点数を浮動小数点数の形式で出力ストリームに挿入できるようにします
-		//非メンバ関数として扱われるため、friend関数にする必要がある
-		//最初の引数がstreamで、このメンバ関数が呼び出されるインスタンスがストリームに
-		//なってしまい、意図した動作を達成できなくなるため。
+		//TODO: frind関数を使わずに実装する。<<演算子のオーバーロードは
+		//クラスの外で定義する。Fixedクラスのメンバ関数を使って、非メンバの
+		//オーバーロード関数を実装する
 		friend std::ostream &operator<<(std::ostream& os, const Fixed &fixed);
 
 		// 固定小数点の値を返す
