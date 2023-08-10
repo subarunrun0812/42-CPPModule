@@ -1,5 +1,5 @@
 NAME = ex05
-CC = g++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SOURCES = main.cpp \

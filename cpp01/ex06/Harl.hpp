@@ -4,7 +4,6 @@
 #include <string.h>
 #include <iostream>
 
-
 class Harl 
 {
 	private:
@@ -15,5 +14,7 @@ class Harl
 	public:
 		void complain(std::string level);
 };
+
+void selectionComplain(std::string level);
 
 #endif

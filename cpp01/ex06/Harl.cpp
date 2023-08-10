@@ -23,23 +23,57 @@ void Harl::error()
 
 void Harl::complain(std::string level)
 {
-	//std::map コンテナ
-	// このマップのキーはstd::string型で、値はHarlクラスのメンバ関数を指す関数ポインタ
-	std::map<std::string, void (Harl::*)()> levelFuncs;
-	levelFuncs["DEBUG"] = &Harl::debug;
-	levelFuncs["INFO"] = &Harl::info;
-	levelFuncs["WARNING"] = &Harl::warning;
-	levelFuncs["ERROR"] = &Harl::error;
+	//メンバ関数へのポインタの配列を定義
+	void (Harl::*funcArray[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string levels[4] = {"DEBUG","INFO","WARNING","ERROR"};
 
-	if (levelFuncs.count(level) > 0)
+	for (size_t i = 0; i < 4; i++)
 	{
-		//対応するメンバ関数を呼び出しています。関数ポインタを使用して、
-		//levelに対応するHarlクラスのメンバ関数を呼び出しています。
-		//例えば、levelが"DEBUG"であれば、Harl::debug関数が呼び出されます。
-		(this->*levelFuncs[level])();
+		if(level == levels[i])
+		{
+			(this->*funcArray[i])();
+			return;
+		}
 	}
-	else
-	{
-		std::cout << "Invalid level!\n";
-	}
+	std::cout << "Probably complaining about insignificant problems \n";
 };
+
+void selectionComplain(std::string level)
+{
+	std::string levels[4] = {"DEBUG","INFO","WARNING","ERROR"};
+	Harl harl;
+	int num = 0;
+	for (size_t i = 0; i < 4; i++)
+	{
+		if(level == levels[i])
+		{
+			num = i + 1;
+			break;
+		}
+	}
+	switch (num)
+	{
+	case 0:
+		std::cout << "Probably complaining about insignificant problems" << std::endl;
+		break;
+	case 1:
+		harl.complain("DEBUG");
+		harl.complain("INFO");
+		harl.complain("WARNING");
+		harl.complain("ERROR");
+		break;
+	case 2:
+		harl.complain("INFO");
+		harl.complain("WARNING");
+		harl.complain("ERROR");
+		break;
+	case 3:
+		harl.complain("WARNING");
+		harl.complain("ERROR");
+		break;
+		break;
+	case 4:
+		harl.complain("ERROR");
+		break;
+	}
+}
