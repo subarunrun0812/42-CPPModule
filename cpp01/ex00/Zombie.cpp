@@ -8,8 +8,8 @@ Zombie::~Zombie()
 
 Zombie::Zombie(std::string zombieName)
 {
-	std::cout << "create zombie object" << std::endl;
 	this->name = zombieName;
+	std::cout << this->name << ": create zombie object" << std::endl;
 }
 
 void Zombie::announce(void)

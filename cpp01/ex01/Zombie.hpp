@@ -12,8 +12,7 @@ class Zombie
 		std::string name;
 	public:
 		//コンストラクタ
-		Zombie() : name("") {}
-		Zombie(std::string zombieName);
+		Zombie();
 		//デストラクタ
 		~Zombie();
 		void setName(std::string name);

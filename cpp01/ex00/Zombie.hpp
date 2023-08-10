@@ -5,7 +5,6 @@
 #include <string.h>
 #include <iostream>
 
-// 
 class Zombie
 {
 	private:

@@ -1,5 +1,4 @@
 #include "Harl.hpp"
-#include <map>
 
 void Harl::debug()
 {
@@ -23,25 +22,17 @@ void Harl::error()
 
 void Harl::complain(std::string level)
 {
-	//std::map コンテナ
-	// このマップのキーはstd::string型で、値はHarlクラスのメンバ関数を指す関数ポインタ
-	//TODO: cpp-01ではコンテナは使用禁止
-	std::map<std::string, void (Harl::*)()> levelFuncs;
-	levelFuncs["DEBUG"] = &Harl::debug;
-	levelFuncs["INFO"] = &Harl::info;
-	levelFuncs["WARNING"] = &Harl::warning;
-	levelFuncs["ERROR"] = &Harl::error;
+	//メンバ関数へのポインタの配列を定義
+	void (Harl::*funcArray[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string levels[4] = {"DEBUG","INFO","WARNING","ERROR"};
 
-	//TODO: if,else文は使用禁止
-	if (levelFuncs.count(level) > 0)
+	for (size_t i = 0; i < 4; i++)
 	{
-		//対応するメンバ関数を呼び出しています。関数ポインタを使用して、
-		//levelに対応するHarlクラスのメンバ関数を呼び出しています。
-		//例えば、levelが"DEBUG"であれば、Harl::debug関数が呼び出されます。
-		(this->*levelFuncs[level])();
+		if(level == levels[i])
+		{
+			(this->*funcArray[i])();
+			return;
+		}
 	}
-	else
-	{
-		std::cout << "Invalid level!\n";
-	}
+	
 };
