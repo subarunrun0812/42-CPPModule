@@ -19,11 +19,6 @@ class Fixed
 		Fixed(const int int_val);
 		//浮動小数点を受け取るコンストラクタ
 		Fixed(const float float_val);
-		//TODO: frind関数を使わずに実装する。<<演算子のオーバーロードは
-		//クラスの外で定義する。Fixedクラスのメンバ関数を使って、非メンバの
-		//オーバーロード関数を実装する
-		friend std::ostream &operator<<(std::ostream& os, const Fixed &fixed);
-
 		// 固定小数点の値を返す
 		// constがメンバ関数の後ろについた場合、メンバ変数の値を変更しない[読み取り専用]という事を表している
 		int getValue(void) const;
@@ -35,5 +30,9 @@ class Fixed
 		int toInt(void) const;
 
 };
+//frind関数を使わずに実装する。<<演算子のオーバーロードは
+//クラスの外で定義する。Fixedクラスのメンバ関数を使って、非メンバの
+//オーバーロード関数を実装する
+std::ostream &operator<<(std::ostream& os, const Fixed &fixed);
 
 #endif
