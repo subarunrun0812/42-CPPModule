@@ -3,7 +3,8 @@
 
 #include "Weapon.hpp"
 
-//オブジェクト生成時、HumanBはweaponを持っていない
+//オブジェクト生成時、HumanBはweaponを持っていない。
+//後から、Weaponオブジェクトを保持するため
 class HumanB
 {
 private:

@@ -7,5 +7,10 @@ int main(void)
 	{
 		zombie[i].announce();
 	}
-	//TODO: 動的確保したzombieをdeleteで解放する
+	delete[] zombie;
 }
+
+// #include <stdlib.h>
+// __attribute__((destructor)) static void destructor(void) {
+// 	system("leaks -q ex01");
+// }

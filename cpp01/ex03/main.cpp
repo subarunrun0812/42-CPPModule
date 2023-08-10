@@ -4,6 +4,7 @@
 
 int main()
 {
+	//{}はスコープブロック。ローカル変数が{}を抜けたら、スタック領域のメモリが解放される。
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanA bob("Bob", club);
