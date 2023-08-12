@@ -24,7 +24,6 @@ class Fixed
 		//非メンバ関数として扱われるため、friend関数にする必要がある
 		//最初の引数がstreamで、このメンバ関数が呼び出されるインスタンスがストリームに
 		//なってしまい、意図した動作を達成できなくなるため。
-		friend std::ostream &operator<<(std::ostream& os, const Fixed &fixed);
 
 		//四則演算
 		Fixed operator +(const Fixed& other) const;
@@ -51,7 +50,6 @@ class Fixed
 		static Fixed& max(Fixed& a, Fixed& b);
 		static const Fixed& max(const Fixed& a, const Fixed& b);
 
-
 		// 固定小数点の値を返す
 		// constがメンバ関数の後ろについた場合、メンバ変数の値を変更しない[読み取り専用]という事を表している
 		int getValue(void) const;
@@ -61,7 +59,8 @@ class Fixed
 		float toFloat(void) const;
 		// 固定小数点値を整数値に変換する
 		int toInt(void) const;
-
 };
+
+std::ostream &operator<<(std::ostream& os, const Fixed &fixed);
 
 #endif

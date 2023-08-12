@@ -30,7 +30,7 @@ class Fixed
 		int toInt(void) const;
 
 };
-//frind関数を使わずに実装する。<<演算子のオーバーロードは
+//<<演算子のオーバーロードは
 //クラスの外で定義する。Fixedクラスのメンバ関数を使って、非メンバの
 //オーバーロード関数を実装する
 std::ostream &operator<<(std::ostream& os, const Fixed &fixed);
