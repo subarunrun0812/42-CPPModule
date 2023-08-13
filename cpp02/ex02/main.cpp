@@ -11,18 +11,20 @@ int main(void) {
 	std::cout << b << std::endl;
 	std::cout << Fixed::max(a, b) << std::endl;
 
-/*
+// /*
 	// testcase
+	Fixed smaller(2);
+	Fixed bigger(3);
 	std::cout << "~~ test case(0=false,1=true) ~~" << std::endl;
-	std::cout << (a > b) << std::endl;
-	std::cout << (a < b) << std::endl;
-	std::cout << (a >= b) << std::endl;
-	std::cout << (a <= b) << std::endl;
-	std::cout << (a == b) << std::endl;
-	std::cout << (a != b) << std::endl;
+	std::cout << (smaller > bigger) << std::endl;
+	std::cout << (smaller < bigger) << std::endl;
+	std::cout << (smaller >= bigger) << std::endl;
+	std::cout << (smaller <= bigger) << std::endl;
+	std::cout << (smaller == bigger) << std::endl;
+	std::cout << (smaller != bigger) << std::endl;
 	std::cout << "~~ 四則演算 ~~" << std::endl;
-	Fixed c(2);
-	Fixed d(3);
+	Fixed c(1);
+	Fixed d(5);
 	std::cout << (c + d) << std::endl;
 	std::cout << (c - d) << std::endl;
 	std::cout << (c * d) << std::endl;
@@ -36,6 +38,6 @@ int main(void) {
 	std::cout << (++d) << std::endl;
 	std::cout << Fixed::max(c, d) << std::endl;
 	std::cout << Fixed::min(c, d) << std::endl;
-*/
+// */
 	return 0;
 }

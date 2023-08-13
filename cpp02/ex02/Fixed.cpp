@@ -13,26 +13,22 @@ void Fixed::setValue(int const value)
 // default constructor
 Fixed::Fixed()
 {
-	// std::cout << "Default constructor called" << std::endl;
 	this->fixedPointValue = 0;
 }
 
 // destructor
 Fixed::~Fixed()
 {
-	// std::cout << "Destructor called" << std::endl;
 }
 
 // copy constructor
 Fixed::Fixed(const Fixed& fixed)
 {
-	// std::cout << "Copy constructor called" << std::endl;
 	this->setValue(fixed.getValue());
 }
 
 // copy assignment operator
 Fixed& Fixed::operator=(const Fixed& fixed) {
-	// std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &fixed)
 	{
 		this->fixedPointValue = fixed.getValue();
@@ -42,12 +38,10 @@ Fixed& Fixed::operator=(const Fixed& fixed) {
 
 Fixed::Fixed(const int int_val) : fixedPointValue(int_val << bits)
 {
-	// std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float float_val) : fixedPointValue(roundf(float(float_val * (1 << bits))))
 {
-	// std::cout << "Float constructor called" << std::endl;
 }
 
 //<<演算子をオーバーロードし、float型で値を返す
@@ -60,43 +54,37 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 
 bool Fixed::operator >(const Fixed& other) const
 {
-	// std::cout << "Operator overload functions >" << std::endl;
 	return this->fixedPointValue > other.fixedPointValue;
 }
 bool Fixed::operator <(const Fixed& other) const
 {
-	// std::cout << "Operator overload functions <" << std::endl;
 	return this->fixedPointValue < other.fixedPointValue;
 }
 bool Fixed::operator >=(const Fixed& other) const
 {
-	// std::cout << "Operator overload functions >=" << std::endl;
 	return this->fixedPointValue >= other.fixedPointValue;
 }
 bool Fixed::operator <=(const Fixed& other) const
 {
-	// std::cout << "Operator overload functions <=" << std::endl;
 	return this->fixedPointValue <= other.fixedPointValue;
 }
 bool Fixed::operator ==(const Fixed& other) const
 {
-	// std::cout << "Operator overload functions ==" << std::endl;
 	return this->fixedPointValue == other.fixedPointValue;
 }
 bool Fixed::operator !=(const Fixed& other) const
 {
-	// std::cout << "Operator overload functions !=" << std::endl;
 	return this->fixedPointValue != other.fixedPointValue;
 }
 
 //TODO:ビットシフト後にインクリメント
 // increment/decrement operators
-Fixed& Fixed::operator++() { // pre-increment
-    this->fixedPointValue += (1 * bits);
+Fixed& Fixed::operator++() { // pre-increment ++val
+    this->fixedPointValue += 1;
     return *this;
 }
 
-Fixed Fixed::operator++(int) { // post-increment
+Fixed Fixed::operator++(int) { // post-increment val++
     Fixed temp(*this);
     this->fixedPointValue += 1;
     return temp;
