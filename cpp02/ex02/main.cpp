@@ -23,8 +23,8 @@ int main(void) {
 	std::cout << (smaller == bigger) << std::endl;
 	std::cout << (smaller != bigger) << std::endl;
 	std::cout << "~~ 四則演算 ~~" << std::endl;
-	Fixed c(1);
-	Fixed d(5);
+	Fixed c(5);
+	Fixed d(10);
 	std::cout << (c + d) << std::endl;
 	std::cout << (c - d) << std::endl;
 	std::cout << (c * d) << std::endl;
