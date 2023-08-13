@@ -15,13 +15,14 @@ std::string strReplace(std::string line, std::string s1, std::string s2)
 	}
 	return (line);
 }
-int EditFile(char **argv)
+int EditFile(char** argv)
 {
 	std::string filename = argv[1];
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
 
-
+	//TODO: fileが無い時にエラー出力する
+	//TODO: fileの文字列を変更できない場合、エラーを出力する
 	std::ifstream inFile(filename);
 	if (!inFile)
 	{
@@ -49,5 +50,5 @@ int EditFile(char **argv)
 	outFile.close();
 
 	std::cout << "File contents replaced successfully" << std::endl;
-    return (0);
+	return (0);
 }

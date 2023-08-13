@@ -7,5 +7,6 @@ int main(int argc, char** argv)
 		std::cout << "Missing argument" << std::endl;
 		return (1);
 	}
+
 	return (EditFile(argv));
 }
