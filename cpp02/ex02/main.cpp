@@ -11,7 +11,7 @@ int main(void) {
 	std::cout << b << std::endl;
 	std::cout << Fixed::max(a, b) << std::endl;
 
-// /*
+/*
 	// testcase
 	Fixed smaller(2);
 	Fixed bigger(3);
@@ -38,6 +38,6 @@ int main(void) {
 	std::cout << (++d) << std::endl;
 	std::cout << Fixed::max(c, d) << std::endl;
 	std::cout << Fixed::min(c, d) << std::endl;
-// */
+*/
 	return 0;
 }
