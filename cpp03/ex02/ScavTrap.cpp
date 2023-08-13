@@ -6,10 +6,30 @@ ScavTrap::ScavTrap(const std::string name)
 	std::cout << "Constructor(ScavTrap)" << std::endl;
 
 };
+
+// Canonical Form~
+
+ScavTrap::ScavTrap(){}
+
 ScavTrap::~ScavTrap()
 {
 	std::cout << "Destructor(ScavTrap)" << std::endl;
 }
+
+//ClapTrap(scavTrap) により基底クラスのコピーコンストラクタが呼び出され、基底クラスの部分がコピーされます。
+ScavTrap::ScavTrap(const ScavTrap &scavTrap) : ClapTrap(scavTrap)
+{
+	//ScavTrap独自のメンバ変数がない為、何も書かない
+}
+
+ScavTrap& ScavTrap::operator =(const ScavTrap &scavTrap)
+{
+	//基底クラスのコピー代入演算子を呼び出す
+	ClapTrap::operator=(scavTrap);
+
+	return *this;
+}
+// ~Canonical Form
 
 void ScavTrap::attack(const std::string &target)
 {

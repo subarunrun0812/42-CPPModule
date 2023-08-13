@@ -16,10 +16,31 @@ ClapTrap::ClapTrap(const std::string name, int hitPoints, \
 	std::cout << "Constructor(ClapTrap)" << std::endl;
 }
 
+// Canonical Form~
+ClapTrap::ClapTrap(){}
+
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor(ClapTrap)" << std::endl;
+	std::cout << "Destructor" << std::endl;
 }
+
+ClapTrap::ClapTrap(const ClapTrap &clapTrap)
+{
+	this->name = clapTrap.name;
+	this->hitPoints = clapTrap.hitPoints;
+	this->energyPoints = clapTrap.energyPoints;
+	this->attackDamage = clapTrap.attackDamage;
+}
+
+ClapTrap& ClapTrap::operator =(const ClapTrap &clapTrap)
+{
+	this->name = clapTrap.name;
+	this->hitPoints = clapTrap.hitPoints;
+	this->energyPoints = clapTrap.energyPoints;
+	this->attackDamage = clapTrap.attackDamage;
+	return *this;
+}
+// ~Canonical Form
 
 int ClapTrap::getHitPoints(void)
 {

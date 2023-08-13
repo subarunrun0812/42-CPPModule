@@ -22,7 +22,7 @@ ScavTrap::ScavTrap(const ScavTrap &scavTrap) : ClapTrap(scavTrap)
 	//ScavTrap独自のメンバ変数がない為、何も書かない
 }
 
-ScavTrap& operator =(const ScavTrap &scavTrap)
+ScavTrap& ScavTrap::operator =(const ScavTrap &scavTrap)
 {
 	//基底クラスのコピー代入演算子を呼び出す
 	ClapTrap::operator=(scavTrap);

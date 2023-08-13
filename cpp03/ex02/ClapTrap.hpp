@@ -17,7 +17,10 @@ class ClapTrap
 		ClapTrap(const std::string name);
 		ClapTrap(const std::string name, int hitPoints, \
 			int energyPoints, int attackDamage);;
-		~ClapTrap();			
+		ClapTrap();
+		~ClapTrap();
+		ClapTrap(const ClapTrap &clapTrap);
+		ClapTrap& operator =(const ClapTrap &clapTrap);
 		int getHitPoints(void);
 		int getEnergyPoints(void);
 		int getAttackDamage(void);
