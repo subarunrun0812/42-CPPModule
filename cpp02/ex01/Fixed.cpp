@@ -53,18 +53,19 @@ Fixed::Fixed(const float float_val) : fixedPointValue(roundf(float(float_val * (
 //<<演算子をオーバーロードし、float型で値を返す
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
 {
-	// std::cout << "fixed.toFloat() = " << fixed.toFloat() << std::endl;
 	os << fixed.toFloat();
 	return os;
 }
 
 float Fixed::toFloat(void) const
 {
-	// std::cout << "(float)fixedPointValue " << (float)fixedPointValue << std::endl;
+	/*
+		fixedPointValueの実際の値を持っており、
+		小数部分の256(1<<8)を割ることで、固定小数点数から浮動小数点数に変換する事が出来る
+	*/
 	return (float)fixedPointValue / (float)(1 << bits);
 }
 int Fixed::toInt(void) const
 {
-	// std::cout << "(int)fixedPointValue " << (int)fixedPointValue << std::endl;
 	return (int)fixedPointValue / (1 << bits);
 }

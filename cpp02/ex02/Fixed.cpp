@@ -89,6 +89,7 @@ bool Fixed::operator !=(const Fixed& other) const
 	return this->fixedPointValue != other.fixedPointValue;
 }
 
+//TODO:ビットシフト後にインクリメント
 // increment/decrement operators
 Fixed& Fixed::operator++() { // pre-increment
     this->fixedPointValue += (1 * bits);
