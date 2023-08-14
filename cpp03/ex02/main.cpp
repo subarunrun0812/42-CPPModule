@@ -14,6 +14,8 @@ int main()
 	std::cout << "scav: hitPoints = " << scav.getHitPoints() << std::endl;
 	scav.guardGate();
 	frag.highFivesGuys();
+	std::cout << "frag: hitPoints = " << frag.getHitPoints() << std::endl;
+	std::cout << "frag: attackDamage = " << frag.getAttackDamage() << std::endl;
 
 	return 0;
 }

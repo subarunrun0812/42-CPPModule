@@ -1,6 +1,6 @@
 NAME = ex01
-CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CC = c++
+CFLAGS= -Wall -Wextra -Werror -std=c++98
 
 SOURCES = main.cpp \
 		  ClapTrap.cpp \

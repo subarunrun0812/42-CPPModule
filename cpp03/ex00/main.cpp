@@ -3,8 +3,8 @@
 int main(void)
 {
 	//(hitPoins,energyPoints,attackDamage)
-	ClapTrap player("player", 10, 10, 5);
-	ClapTrap enemy("enemy", 10, 10, 1);
+	ClapTrap player("player");
+	ClapTrap enemy("enemy");
 	player.attack("enemy");
 	enemy.takeDamage(player.getAttackDamage());
 	std::cout << "enemy: hitPoints = " << enemy.getHitPoints() << std::endl;

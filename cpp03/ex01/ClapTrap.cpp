@@ -1,19 +1,11 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(const std::string name)
+//引数付きコンストラクタで初期化
+ClapTrap::ClapTrap(
+	const std::string name, int hitPoints, int energyPoints, int attackDamage)
+	: name(name), hitPoints(hitPoints), energyPoints(energyPoints), attackDamage(attackDamage)
 {
-	this->name = name;
-	std::cout << "\x1b[32mConstructors with arguments\x1b[0m" << std::endl;
-}
-
-ClapTrap::ClapTrap(const std::string name,int hitPoints,\
-					int energyPoints, int attackDamage)
-{
-	this->name = name;
-	this->hitPoints = hitPoints;
-	this->energyPoints = energyPoints;
-	this->attackDamage = attackDamage;
-	std::cout << "\x1b[32mConstructors with arguments\x1b[0m" << std::endl;
+	std::cout << "Constructors with arguments and all menmber variable" << std::endl;
 }
 
 // Canonical Form〜
@@ -36,7 +28,7 @@ ClapTrap::ClapTrap(const ClapTrap &clapTrap)
 	std::cout << "\x1b[32mCopy Constructor\x1b[0m" << std::endl;
 }
 
-ClapTrap& ClapTrap::operator =(const ClapTrap &clapTrap)
+ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap)
 {
 	this->name = clapTrap.name;
 	this->hitPoints = clapTrap.hitPoints;
@@ -61,17 +53,16 @@ int ClapTrap::getAttackDamage(void)
 	return (this->attackDamage);
 }
 
-void ClapTrap::attack(const std::string& target)
+void ClapTrap::attack(const std::string &target)
 {
-	if (this->energyPoints <= 0)
+	if (this->energyPoints <= 0 || this->hitPoints <= 0)
 	{
 		std::cout << "\x1b[32mNot enough energy.\x1b[0m" << std::endl;
-		return ;
+		return;
 	}
 	this->energyPoints--;
-	std::cout  << "\x1b[32m" << this->name <<" attacks " << \
-	target << " for " << this->attackDamage <<" damage!\x1b[0m"
-	<< std::endl;
+	std::cout << "\x1b[32m" << this->name << " attacks " << target << " for " << this->attackDamage << " damage!\x1b[0m"
+			  << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -79,15 +70,14 @@ void ClapTrap::takeDamage(unsigned int amount)
 	this->hitPoints -= amount;
 	if (this->hitPoints <= 0)
 	{
-		std::cout  << "\x1b[32m" << this->name \
-		<< " is dead\x1b[0m" << std::endl;
-		 energyPoints = 0;
-		 hitPoints = 0;
+		std::cout << "\x1b[32m" << this->name
+				  << " is dead\x1b[0m" << std::endl;
+		energyPoints = 0;
+		hitPoints = 0;
 	}
 	else
 	{
-		std::cout  << "\x1b[32m" << this->name << " takes " << amount << \
-		" damage\x1b[0m" << std::endl;
+		std::cout << "\x1b[32m" << this->name << " takes " << amount << " damage\x1b[0m" << std::endl;
 	}
 }
 
@@ -96,10 +86,17 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if (this->energyPoints <= 0)
 	{
 		std::cout << "\x1b[32mNot enough energy.\x1b[0m" << std::endl;
-		return ;
+		return;
 	}
-	this->energyPoints--;
-	std::cout << "\x1b[32m"<< this->name << " recovered "\
-	 << amount << "\x1b[0m" << std::endl;
-	this->hitPoints += amount;
+	if (this->hitPoints + amount > INT_MAX)
+	{
+		std::cout << "\x1b[32mINT_MAX or higher cannot be recovered.\x1b[0m" << std::endl;
+	}
+	else
+	{
+		this->energyPoints--;
+		std::cout << "\x1b[32m" << this->name << " recovered "
+				  << amount << "\x1b[0m" << std::endl;
+		this->hitPoints += amount;
+	}
 }

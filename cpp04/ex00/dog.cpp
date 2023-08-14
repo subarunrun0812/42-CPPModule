@@ -1,5 +1,8 @@
 #include "dog.hpp"
 
+
+// Canonical Form~
+// ~Canonical Form
 Dog::Dog()
 {
 	this->type = "Dog";
