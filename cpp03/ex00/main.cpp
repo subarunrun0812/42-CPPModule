@@ -2,8 +2,9 @@
 
 int main(void)
 {
-	ClapTrap player("player",10,10,1);
-	ClapTrap enemy("enemy",10,10,1);
+	//(hitPoins,energyPoints,attackDamage)
+	ClapTrap player("player", 10, 10, 1);
+	ClapTrap enemy("enemy", 10, 10, 1);
 	player.attack("enemy");
 	enemy.takeDamage(player.getAttackDamege());
 	enemy.beRepaired(enemy.getAttackDamege());

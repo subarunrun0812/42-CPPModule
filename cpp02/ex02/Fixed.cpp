@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-int Fixed::getValue(void) const 
+int Fixed::getValue(void) const
 {
 	return this->fixedPointValue;
 }
@@ -45,7 +45,7 @@ Fixed::Fixed(const int int_val) : fixedPointValue(int_val << bits)
 	// std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float float_val) : fixedPointValue(roundf(float(float_val * (1 << bits))))
+Fixed::Fixed(const float float_val) : fixedPointValue(roundf(float(float_val* (1 << bits))))
 {
 	// std::cout << "Float constructor called" << std::endl;
 }
@@ -92,26 +92,26 @@ bool Fixed::operator !=(const Fixed& other) const
 //TODO:ビットシフト後にインクリメント
 // increment/decrement operators
 Fixed& Fixed::operator++() { // pre-increment ++val
-    this->fixedPointValue += 1;
-    return *this;
+	this->fixedPointValue += 1;
+	return *this;
 }
 
 Fixed Fixed::operator++(int) { // post-increment val++
-    Fixed temp(*this);
-    this->fixedPointValue += 1;
-    return temp;
+	Fixed temp(*this);
+	this->fixedPointValue += 1;
+	return temp;
 }
 
 // increment/decrement operators
 Fixed& Fixed::operator--() { // pre-increment
-    this->fixedPointValue -= 1;
-    return *this;
+	this->fixedPointValue -= 1;
+	return *this;
 }
 
 Fixed Fixed::operator--(int) { // post-increment
-    Fixed temp(*this);
-    this->fixedPointValue -= 1;
-    return temp;
+	Fixed temp(*this);
+	this->fixedPointValue -= 1;
+	return temp;
 }
 
 Fixed Fixed::operator +(const Fixed& other) const
