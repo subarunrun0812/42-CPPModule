@@ -5,7 +5,9 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 SOURCES = main.cpp\
 			animal.cpp\
 			cat.cpp\
-			dog.cpp
+			dog.cpp\
+			WrongAnimal.cpp\
+			WrongCat.cpp\
 
 all : $(NAME)
 
