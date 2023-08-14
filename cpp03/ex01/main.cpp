@@ -9,11 +9,12 @@ int main() {
 	player.beRepaired(5);
 
 	// ScavTrapクラスのインスタンスを作成
-	ScavTrap scav("player2");
-	scav.attack("enemy2");
-	scav.guardGate();
-	scav.takeDamage(15);
-	scav.beRepaired(10);
+	ScavTrap scav_player("scav_player");
+	ScavTrap scav_enemy("scav_enemy");
+	scav_player.attack("scav_enemy");
+	scav_player.guardGate();
+	scav_enemy.takeDamage(scav_player.getAttackDamage());
+	scav_enemy.beRepaired(5);
 
 	return 0;
 }

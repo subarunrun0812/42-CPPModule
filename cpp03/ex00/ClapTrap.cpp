@@ -50,7 +50,7 @@ int ClapTrap::getEnergyPoints(void)
 	return (this->energyPoints);
 }
 
-int ClapTrap::getAttackDamege(void)
+int ClapTrap::getAttackDamage(void)
 {
 	return (this->attackDamage);
 }
@@ -91,6 +91,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	}
 	this->energyPoints--;
-	std::cout << this->name << " recovered " << amount - this->hitPoints << std::endl;
-	this->hitPoints = amount;
+	std::cout << this->name << " recovered " << amount << std::endl;
+	this->hitPoints += amount;
 }

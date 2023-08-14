@@ -6,7 +6,8 @@
 
 class ClapTrap
 {
-	private:
+	//ScavTrapからアクセスできるようにprotectedに変更
+	protected:
 		std::string name; // コンストラクタに渡す引数
 		int hitPoints; // 体力値
 		int energyPoints;
@@ -21,7 +22,7 @@ class ClapTrap
 		ClapTrap& operator =(const ClapTrap &clapTrap);
 		int getHitPoints(void);
 		int getEnergyPoints(void);
-		int getAttackDamege(void);
+		int getAttackDamage(void);
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);

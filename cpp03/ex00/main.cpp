@@ -6,7 +6,7 @@ int main(void)
 	ClapTrap player("player", 10, 10, 5);
 	ClapTrap enemy("enemy", 10, 10, 1);
 	player.attack("enemy");
-	enemy.takeDamage(player.getAttackDamege());
+	enemy.takeDamage(player.getAttackDamage());
 	std::cout << "enemy: hitPoints = " << enemy.getHitPoints() << std::endl;
 	enemy.beRepaired(10);
 	std::cout << "enemy: hitPoints = " << enemy.getHitPoints() << std::endl;
