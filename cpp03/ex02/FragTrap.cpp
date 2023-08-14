@@ -3,7 +3,7 @@
 FragTrap::FragTrap(const std::string name)\
  : ClapTrap(name,100,100,30)
 {
-	std::cout << "Constructor(FragTrap)" << std::endl;
+	std::cout << "[FragTrap] Constructor" << std::endl;
 }
 
 // Canonical Form~
@@ -31,5 +31,5 @@ FragTrap& FragTrap::operator=(const FragTrap &flagTrap)
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout << this->name << " requests high fives" << std::endl;
+	std::cout << "[FragTrap] " <<this->name << " requests high fives" << std::endl;
 }

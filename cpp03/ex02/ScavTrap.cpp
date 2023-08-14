@@ -36,5 +36,5 @@ ScavTrap& ScavTrap::operator =(const ScavTrap &scavTrap)
 
 void ScavTrap::guardGate()
 {
-	std::cout  << this->name << " is now in Gate keeper mode" << std::endl;
+	std::cout << "[ScavTrap] " << this->name << " is now in Gate keeper mode" << std::endl;
 }
