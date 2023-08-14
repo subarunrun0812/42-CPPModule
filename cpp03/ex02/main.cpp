@@ -3,11 +3,15 @@
 
 int main()
 {
-	ClapTrap player("Player");
+	//(hitPoins,energyPoints,attackDamage)
+	ClapTrap player("Player",100,20,20);
 	ScavTrap scav("scav");
 	FragTrap frag("frag");
 
-	player.attack("Enemy");
+	std::cout << "scav: hitPoints = " << scav.getHitPoints() << std::endl;
+	player.attack("scav");
+	scav.takeDamage(player.getAttackDamage());
+	std::cout << "scav: hitPoints = " << scav.getHitPoints() << std::endl;
 	scav.guardGate();
 	frag.highFivesGuys();
 

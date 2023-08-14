@@ -6,11 +6,18 @@ FragTrap::FragTrap(const std::string name)\
 	std::cout << "Constructor(FragTrap)" << std::endl;
 }
 
+// Canonical Form~
 FragTrap::FragTrap()
 {
+	std::cout << "[FragTrap] Default Constructor" << std::endl;
+}
+FragTrap::~FragTrap()
+{
+	std::cout << "[FragTrap] Destructor" << std::endl;
 }
 FragTrap::FragTrap(const FragTrap &flagTrap) : ClapTrap(flagTrap)
 {
+	std::cout << "[FragTrap] Copy Constructor" << std::endl;
 	//FragTrap独自のメンバ変数が無い為、何も書かない
 }
 FragTrap& FragTrap::operator=(const FragTrap &flagTrap)
@@ -20,10 +27,7 @@ FragTrap& FragTrap::operator=(const FragTrap &flagTrap)
 
 	return *this;
 }
-FragTrap::~FragTrap()
-{
-	std::cout << "Destructor(FragTrap)" << std::endl;
-}
+// ~Canonical Form
 
 void FragTrap::highFivesGuys(void)
 {

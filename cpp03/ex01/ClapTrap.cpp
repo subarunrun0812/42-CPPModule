@@ -82,6 +82,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		std::cout  << "\x1b[32m" << this->name \
 		<< " is dead\x1b[0m" << std::endl;
 		 energyPoints = 0;
+		 hitPoints = 0;
 	}
 	else
 	{

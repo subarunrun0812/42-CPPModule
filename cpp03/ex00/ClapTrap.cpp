@@ -75,6 +75,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	{
 		std::cout << this->name << " is dead" << std::endl;
 		 energyPoints = 0;
+		 hitPoints = 0;
 	}
 	else
 	{
