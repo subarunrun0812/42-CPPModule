@@ -4,6 +4,8 @@
 
 int main()
 {
+	// TODO:WrongAnimalクラスを継承したWrongCatクラスを実装する。
+
 	const Animal *meta = new Animal();
 	const Animal *j = new Dog();
 	const Animal *i = new Cat();
