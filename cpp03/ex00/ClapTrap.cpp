@@ -7,10 +7,14 @@ ClapTrap::ClapTrap(const std::string name,int hitPoints,\
 	this->hitPoints = hitPoints;
 	this->energyPoints = energyPoints;
 	this->attackDamage = attackDamage;
-	std::cout << "Constructor" << std::endl;
+	std::cout << "Constructors with arguments" << std::endl;
 }
 
-ClapTrap::ClapTrap(){}
+// Canonical Form〜
+ClapTrap::ClapTrap()
+{
+	std::cout << "Default Constructor" << std::endl;
+}
 
 ClapTrap::~ClapTrap()
 {
@@ -23,6 +27,7 @@ ClapTrap::ClapTrap(const ClapTrap &clapTrap)
 	this->hitPoints = clapTrap.hitPoints;
 	this->energyPoints = clapTrap.energyPoints;
 	this->attackDamage = clapTrap.attackDamage;
+	std::cout << "Copy Constructor" << std::endl;
 }
 
 ClapTrap& ClapTrap::operator =(const ClapTrap &clapTrap)
@@ -33,6 +38,7 @@ ClapTrap& ClapTrap::operator =(const ClapTrap &clapTrap)
 	this->attackDamage = clapTrap.attackDamage;
 	return *this;
 }
+// 〜Canonical Form
 
 int ClapTrap::getHitPoints(void)
 {
@@ -51,23 +57,30 @@ int ClapTrap::getAttackDamege(void)
 
 void ClapTrap::attack(const std::string& target)
 {
-	//TODO: 攻撃できない場合、takeDamage()も呼ばれないようにする
 	if (this->energyPoints <= 0)
 	{
 		std::cout << "Not enough energy." << std::endl;
 		return ;
 	}
 	this->energyPoints--;
-	std::cout << "ClapTrap "<< this->name <<" attacks " << 
-	target << ", causing " << this->attackDamage <<" points of damage!"
+	std::cout << this->name <<" attacks " << 
+	target << "for " << this->attackDamage <<" damage!"
 	<< std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << this->name << " took " << amount \
-	<< " damage." << std::endl;
 	this->hitPoints -= amount;
+	if (this->hitPoints <= 0)
+	{
+		std::cout << this->name << " is dead" << std::endl;
+		 energyPoints = 0;
+	}
+	else
+	{
+		std::cout << this->name << " takes " << amount << \
+		" damage" << std::endl;
+	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -78,9 +91,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	}
 	this->energyPoints--;
-	std::cout << this->name << " recovered " << amount << std::endl;
-	if ((this->hitPoints + amount ) >= 10)
-		this->hitPoints = 10;
-	else
-		this->hitPoints += amount;
+	std::cout << this->name << " recovered " << amount - this->hitPoints << std::endl;
+	this->hitPoints = amount;
 }
