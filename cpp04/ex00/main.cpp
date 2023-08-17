@@ -21,9 +21,10 @@ int main()
 		delete j;
 		delete i;
 	}
+	std::cout << "========================" << std::endl;
 	{
-		const WrongAnimal* j = new WrongAnimal();
-		const WrongAnimal* i = new WrongCat();
+		const WrongAnimal* i = new WrongAnimal();
+		const WrongAnimal* j = new WrongCat();
 
 		std::cout << i->getType() << ": ";
 		i->makeSound(); // will output the cat sound!
