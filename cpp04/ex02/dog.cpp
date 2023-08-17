@@ -6,8 +6,8 @@ Dog::Dog() : brain(new Brain())
 	std::cout << "Dog construcotr called" << std::endl;
 }
 
-//コピーコンストラクタ
-Dog::Dog(const Dog& other) : brain(new Brain(*other.brain))
+// コピーコンストラクタ
+Dog::Dog(const Dog &other) : brain(new Brain(*other.brain))
 {
 	type = other.type;
 	std::cout << "Dog copied" << std::endl;
@@ -22,4 +22,10 @@ Dog::~Dog()
 void Dog::makeSound() const
 {
 	std::cout << "ワン！ワン！" << std::endl;
+}
+
+Dog &Dog::operator=(Dog &dog)
+{
+	Animal::operator=(dog);
+	return *this;
 }

@@ -1,6 +1,5 @@
 #include "animal.hpp"
 
-//TODO:Canonical formを作成
 Animal::Animal() : type("Unknown")
 {
 	std::cout << "Animal constructor called" << std::endl;

@@ -20,6 +20,12 @@ Cat::~Cat()
 	std::cout << "Cat destructor called" << std::endl;
 }
 
+Cat &Cat::operator=(Cat &cat)
+{
+	Animal::operator=(cat);
+	return *this;
+}
+
 void Cat::makeSound() const
 {
 	std::cout << "ニャオ！" << std::endl;

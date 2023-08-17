@@ -5,7 +5,12 @@ Brain::Brain()
 	std::cout << "Brain constructor called" << std::endl;
 }
 
-Brain::Brain(const Brain& other)
+Brain::~Brain()
+{
+	std::cout << "Brain destructor called" << std::endl;
+}
+
+Brain::Brain(const Brain &other)
 {
 	for (size_t i = 0; i < 100; i++)
 	{
@@ -13,7 +18,13 @@ Brain::Brain(const Brain& other)
 	}
 }
 
-Brain::~Brain()
+Brain &Brain::operator=(const Brain &brain)
 {
-	std::cout << "Brain destructor called" << std::endl;
+	// std::cout << "brain.ideas = " << brain.ideas->length() << std::endl;
+	for (size_t i = 0; i < brain.ideas->length(); i++)
+	{
+		this->ideas[i] = brain.ideas[i];
+	}
+
+	return *this;
 }

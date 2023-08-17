@@ -12,6 +12,7 @@ class ScavTrap : public ClapTrap
 		ScavTrap(const ScavTrap &scavTrap);
 		ScavTrap& operator =(const ScavTrap &scavTrap);
 		void guardGate();
+		//TODO: ScavTrapの方でattack()を新たに定義する
 };
 
 #endif
