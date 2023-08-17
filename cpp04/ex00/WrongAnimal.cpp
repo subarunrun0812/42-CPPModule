@@ -27,5 +27,5 @@ std::string WrongAnimal::getType() const
 
 void WrongAnimal::makeSound() const
 {
-	std::cout << "WrongAnimal makes soundes" << std::endl;
+	std::cout << "WrongAnimal WrongAnimal WrongAnimal" << std::endl;
 }

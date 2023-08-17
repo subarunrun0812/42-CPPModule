@@ -13,25 +13,22 @@ int main()
 
 		std::cout << j->getType() << ": ";
 		j->makeSound();
-		std::cout << std::endl;
-
 		std::cout << i->getType() << ": ";
 		i->makeSound(); // will output the cat sound!
-		std::cout << std::endl;
 		meta->makeSound();
 		delete meta;
 		delete j;
 		delete i;
 	}
 	{
-		const WrongAnimal* meta = new WrongAnimal();
+		const WrongAnimal* j = new WrongAnimal();
 		const WrongAnimal* i = new WrongCat();
 
 		std::cout << i->getType() << ": ";
 		i->makeSound(); // will output the cat sound!
-		std::cout << std::endl;
-		meta->makeSound();
-		delete meta;
+		std::cout << j->getType() << ": ";
+		j->makeSound();
+		delete j;
 		delete i;
 	}
 	return 0;

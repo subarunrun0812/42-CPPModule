@@ -12,7 +12,8 @@ public:
 	WrongCat& operator=(const WrongCat& WrongCat);
 	// 仮想関数
 	virtual ~WrongCat();
-	virtual void makeSound() const;
+	// Virtualを使用しない場合、基底クラスの方の処理内容が優先されることを知る為のWrong*クラス。
+	void makeSound() const;
 	std::string getType() const;
 };
 
