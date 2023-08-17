@@ -13,6 +13,7 @@ public:
 	Dog();
 	Dog(const Dog& other);
 	~Dog();
+	Dog& operator=(Dog& dog);
 	void makeSound() const;
 };
 

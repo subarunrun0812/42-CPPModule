@@ -19,6 +19,12 @@ Dog::~Dog()
 	std::cout << "Dog destructor called" << std::endl;
 }
 
+Dog& Dog::operator=(Dog& dog)
+{
+	Animal::operator=(dog);
+	return *this;
+}
+
 void Dog::makeSound() const
 {
 	std::cout << "ワン！ワン！" << std::endl;
