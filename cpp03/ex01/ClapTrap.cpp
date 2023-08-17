@@ -83,7 +83,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->energyPoints <= 0)
+	if (this->energyPoints <= 0 || this->hitPoints <= 0)
 	{
 		std::cout << "\x1b[32mNot enough energy.\x1b[0m" << std::endl;
 		return;
