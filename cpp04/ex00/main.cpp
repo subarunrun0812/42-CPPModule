@@ -11,11 +11,12 @@ int main()
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 
+		std::cout << meta->getType() << ": ";
+		meta->makeSound();
 		std::cout << j->getType() << ": ";
 		j->makeSound();
 		std::cout << i->getType() << ": ";
 		i->makeSound(); // will output the cat sound!
-		meta->makeSound();
 		delete meta;
 		delete j;
 		delete i;

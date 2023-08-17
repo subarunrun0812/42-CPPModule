@@ -3,16 +3,16 @@
 // Canonical Form~
 WrongAnimal::WrongAnimal() : type("Unknown")
 {
-	// std::cout << "WrongAnimal constructor called" << std::endl;
+	std::cout << "WrongAnimal constructor called" << std::endl;
 }
 WrongAnimal::~WrongAnimal()
 {
-	// std::cout << "WrongAnimal destructor called" << std::endl;
+	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 WrongAnimal::WrongAnimal(const WrongAnimal& wronganimal)
 {
 	this->type = wronganimal.type;
-	// std::cout << "WrongAnimal Copy Constructor" << std::endl;
+	std::cout << "WrongAnimal Copy Constructor" << std::endl;
 }
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& wronganimal)
 {
