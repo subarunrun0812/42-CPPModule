@@ -7,14 +7,14 @@
 class Cat : public Animal
 {
 private:
-	Brain *brain;
-
+	Brain* brain;
 public:
 	Cat();
-	Cat(const Cat &other);
+	Cat(const Cat& other);
 	~Cat();
-	Cat &operator=(Cat &cat);
+	Cat& operator=(Cat& cat);
 	void makeSound() const;
+	Brain* getBrain() const;
 };
 
 #endif

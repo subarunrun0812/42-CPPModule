@@ -1,17 +1,19 @@
 #include "cat.hpp"
 
 // brainポインタに新しいBrainオブジェクトが割り当てられる。
-Cat::Cat() : brain(new Brain())
+Cat::Cat()
 {
 	this->type = "Cat";
+	this->brain = new Brain();
 	std::cout << "Cat construcotr called" << std::endl;
 }
 
 //コピーコンストラクタ
-Cat::Cat(const Cat& other) : brain(new Brain(*other.brain))
+Cat::Cat(const Cat& other)
 {
-	type = other.type;
-	std::cout << "Cat copied" << std::endl;
+	this->type = other.type;
+	this->brain = new Brain(*(other.brain));
+	std::cout << "Cat copy constructor" << std::endl;
 }
 
 Cat::~Cat()
@@ -20,8 +22,12 @@ Cat::~Cat()
 	std::cout << "Cat destructor called" << std::endl;
 }
 
-Cat &Cat::operator=(Cat &cat)
+Cat& Cat::operator=(Cat& cat)
 {
+	this->type = cat.type;
+	if (this->brain)
+		delete brain;
+	this->brain = new Brain(*(cat.brain));
 	Animal::operator=(cat);
 	return *this;
 }
@@ -29,4 +35,9 @@ Cat &Cat::operator=(Cat &cat)
 void Cat::makeSound() const
 {
 	std::cout << "ニャオ！" << std::endl;
+}
+
+Brain* Cat::getBrain() const
+{
+	return (this->brain);
 }

@@ -1,15 +1,17 @@
 #include "dog.hpp"
 
-Dog::Dog() : brain(new Brain())
+Dog::Dog()
 {
 	this->type = "Dog";
+	this->brain = new Brain();
 	std::cout << "Dog construcotr called" << std::endl;
 }
 
-// コピーコンストラクタ
-Dog::Dog(const Dog &other) : brain(new Brain(*other.brain))
+//コピーコンストラクタ
+Dog::Dog(const Dog& other)
 {
 	type = other.type;
+	this->brain = new Brain(*(other.brain));
 	std::cout << "Dog copied" << std::endl;
 }
 
@@ -19,13 +21,22 @@ Dog::~Dog()
 	std::cout << "Dog destructor called" << std::endl;
 }
 
+Dog& Dog::operator=(Dog& dog)
+{
+	this->type = dog.type;
+	if (this->brain)
+		delete brain;
+	this->brain = new Brain(*(dog.brain));
+	Animal::operator=(dog);
+	return *this;
+}
+
 void Dog::makeSound() const
 {
 	std::cout << "ワン！ワン！" << std::endl;
 }
 
-Dog &Dog::operator=(Dog &dog)
+Brain* Dog::getBrain() const
 {
-	Animal::operator=(dog);
-	return *this;
+	return (this->brain);
 }
