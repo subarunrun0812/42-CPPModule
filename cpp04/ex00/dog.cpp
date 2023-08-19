@@ -5,15 +5,15 @@
 Dog::Dog()
 {
 	this->type = "Dog";
-	std::cout << "Cat constructor called" << std::endl;
+	std::cout << "Dog\tconstructor called" << std::endl;
 }
 Dog::~Dog()
 {
-	std::cout << "Cat destructor called" << std::endl;
+	std::cout << "Dog\tdestructor called" << std::endl;
 }
 Dog::Dog(const Dog& dog) : Animal(dog)
 {
-	std::cout << "Cat copy contructor called" << std::endl;
+	std::cout << "Dog\tcopy contructor called" << std::endl;
 }
 
 Dog& Dog::operator=(Dog& dog)

@@ -1,20 +1,20 @@
 #include "animal.hpp"
 
 // Canonical Form~
-Animal::Animal() : type("Unknown")
+Animal::Animal() : type("Animal")
 {
-	std::cout << "Animal constructor called" << std::endl;
+	std::cout << "Animal\tconstructor called" << std::endl;
 }
 Animal::~Animal()
 {
-	std::cout << "Animal destructor called" << std::endl;
+	std::cout << "Animal\tdestructor called" << std::endl;
 }
-Animal::Animal(const Animal& animal)
+Animal::Animal(const Animal &animal)
 {
 	this->type = animal.type;
-	std::cout << "Animal copu constructor called" << std::endl;
+	std::cout << "Animal\tcopu constructor called" << std::endl;
 }
-Animal& Animal::operator=(const Animal& animal)
+Animal &Animal::operator=(const Animal &animal)
 {
 	this->type = animal.type;
 	return *this;
@@ -27,5 +27,5 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-	std::cout << "Animal makes soundes" << std::endl;
+	std::cout << "Animal\tアニマル  アニマル" << std::endl;
 }
