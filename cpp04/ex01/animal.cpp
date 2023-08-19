@@ -2,12 +2,12 @@
 
 Animal::Animal() : type("Unknown")
 {
-	std::cout << "Animal constructor called" << std::endl;
+	std::cout << "Animal\tconstructor called" << std::endl;
 }
 
 Animal::~Animal()
 {
-	std::cout << "Animal destructor called" << std::endl;
+	std::cout << "Animal\tdestructor called" << std::endl;
 }
 
 Animal::Animal(const Animal& animal)

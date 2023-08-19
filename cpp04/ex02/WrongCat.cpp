@@ -5,16 +5,16 @@
 WrongCat::WrongCat()
 {
 	this->type = "WrongCat";
-	std::cout << "WrongCat constructor called" << std::endl;
+	std::cout << "WrongCat\tconstructor called" << std::endl;
 
 }
 WrongCat::~WrongCat()
 {
-	std::cout << "WrongCat destructor called" << std::endl;
+	std::cout << "WrongCat\tdestructor called" << std::endl;
 }
 WrongCat::WrongCat(const WrongCat& Wrongcat) : WrongAnimal(Wrongcat)
 {
-	std::cout << "WrongCat copy constructor called" << std::endl;
+	std::cout << "WrongCat\tcopy constructor called" << std::endl;
 
 }
 WrongCat& WrongCat::operator=(const WrongCat& Wrongcat)
@@ -26,5 +26,5 @@ WrongCat& WrongCat::operator=(const WrongCat& Wrongcat)
 
 void WrongCat::makeSound() const
 {
-	std::cout << "WrongCat WrongCat WrongCat " << std::endl;
+	std::cout << "ロングキャット  ロングキャット" << std::endl;
 }

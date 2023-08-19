@@ -4,7 +4,14 @@ Dog::Dog()
 {
 	this->type = "Dog";
 	this->brain = new Brain();
-	std::cout << "Dog construcotr called" << std::endl;
+	std::cout << "Dog\tconstructor called" << std::endl;
+}
+
+
+Dog::~Dog()
+{
+	delete brain;
+	std::cout << "Dog\tdestructor called" << std::endl;
 }
 
 //コピーコンストラクタ
@@ -12,13 +19,7 @@ Dog::Dog(const Dog& other)
 {
 	type = other.type;
 	this->brain = new Brain(*(other.brain));
-	std::cout << "Dog copied" << std::endl;
-}
-
-Dog::~Dog()
-{
-	delete brain;
-	std::cout << "Dog destructor called" << std::endl;
+	std::cout << "Dog\tcopy contructor called" << std::endl;
 }
 
 Dog& Dog::operator=(Dog& dog)

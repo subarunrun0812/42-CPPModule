@@ -1,6 +1,5 @@
 #include "dog.hpp"
 
-
 // Canonical Form~
 Dog::Dog()
 {
@@ -11,12 +10,12 @@ Dog::~Dog()
 {
 	std::cout << "Dog\tdestructor called" << std::endl;
 }
-Dog::Dog(const Dog& dog) : Animal(dog)
+Dog::Dog(const Dog &dog) : Animal(dog)
 {
 	std::cout << "Dog\tcopy contructor called" << std::endl;
 }
 
-Dog& Dog::operator=(Dog& dog)
+Dog &Dog::operator=(Dog &dog)
 {
 	Animal::operator=(dog);
 	return *this;

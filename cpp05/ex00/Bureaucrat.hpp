@@ -8,10 +8,15 @@
 class Bureaucrat
 {
 private:
-	const std::string name;//官僚の名前
+	std::string name;//官僚の名前
 	int grade;//1~150 (高 ~ 低)
 public:
 	//TODO:gradeが1~150以外のものから、例外が投げられた時のthrowの処理を作成
+	Bureaucrat();
+	~Bureaucrat();
+	Bureaucrat(const Bureaucrat &Bureaucrat);
+	Bureaucrat& operator=(const Bureaucrat& bureaucrat);
+	Bureaucrat(std::string name, int grade);
 	void GradeTooHighException();
 	void GradeTooLowException();
 	std::string getName(void) const;

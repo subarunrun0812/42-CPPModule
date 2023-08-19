@@ -7,6 +7,14 @@
 int main()
 {
 	{
+		Animal animal;
+		std::cout << std::endl;
+	}
+	std::cout << std::endl
+			  << "========================" << std::endl
+			  << std::endl;
+
+	{
 		const Animal *meta = new Animal();
 		const Animal *j = new Dog();
 		const Animal *i = new Cat();
@@ -19,8 +27,8 @@ int main()
 		i->makeSound(); // will output the cat sound!
 		std::cout << std::endl;
 		delete meta;
-		delete j;
 		delete i;
+		delete j;
 	}
 	std::cout << std::endl
 			  << "========================" << std::endl

@@ -8,13 +8,13 @@ Brain::Brain()
 		this->ideas[i] = "I AM VERY SMART!!!";
 	}
 
-	std::cout << "Brain constructor called" << std::endl;
+	std::cout << "Brain\tconstructor called" << std::endl;
 }
 
 Brain::~Brain()
 {
 	delete[] ideas;
-	std::cout << "Brain destructor called" << std::endl;
+	std::cout << "Brain\tdestructor called" << std::endl;
 }
 
 Brain::Brain(const Brain& other)

@@ -5,7 +5,7 @@ Cat::Cat()
 {
 	this->type = "Cat";
 	this->brain = new Brain();
-	std::cout << "Cat construcotr called" << std::endl;
+	std::cout << "Cat\tconstructor called" << std::endl;
 }
 
 //コピーコンストラクタ
@@ -13,13 +13,13 @@ Cat::Cat(const Cat& other)
 {
 	this->type = other.type;
 	this->brain = new Brain(*(other.brain));
-	std::cout << "Cat copy constructor" << std::endl;
+	std::cout << "Cat\tcopy constructor" << std::endl;
 }
 
 Cat::~Cat()
 {
 	delete brain;
-	std::cout << "Cat destructor called" << std::endl;
+	std::cout << "Cat\tdestructor called" << std::endl;
 }
 
 Cat& Cat::operator=(Cat& cat)
