@@ -19,7 +19,7 @@ Dog &Dog::operator=(Dog &dog)
 {
 	Animal::operator=(dog);
 	return *this;
-}
+}1
 // ~Canonical Form
 
 void Dog::makeSound() const

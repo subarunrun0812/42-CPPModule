@@ -5,6 +5,9 @@
 #include <stdexcept>
 #include <string>
 
+#define RED "\x1b[31m"
+#define NORMAL "\x1b[0m"
+
 class Bureaucrat
 {
 private:

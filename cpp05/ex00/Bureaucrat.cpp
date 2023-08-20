@@ -24,17 +24,41 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
 	return *this;
 }
 
+void checkGrade(int grade)
+{
+	// gradeの値を確認
+	if (grade < 0)
+	{
+		throw GradeTooLowException();
+	}
+	else if(150 < grade)
+	{
+		throw GradeTooHighException();
+	}
+}
+
 Bureaucrat::Bureaucrat(std::string name, int grade)
 {
 	this->name = name;
-	if (1 <= grade && grade <= 150)
+	try
 	{
-		this->grade = grade;
+		checkGrade();
 	}
-	else
+	catch(const std::exception& e)
 	{
-		// TODO:無効な値の為、throw処理を投げる
+		std::cerr << e.what() << '\n';
 	}
+	
+}
+
+void GradeTooHighException()
+{
+	std::cout << RED << "grade too high exception" << NORMAL << std::endl;
+}
+
+void GradeTooLowException()
+{
+	std::cout << RED << "grade too low exception" << NORMAL << std::endl;
 }
 
 std::string Bureaucrat::getName(void) const
