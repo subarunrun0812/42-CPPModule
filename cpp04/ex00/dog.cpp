@@ -1,4 +1,4 @@
-#include "dog.hpp"
+#include "Dog.hpp"
 
 // Canonical Form~
 Dog::Dog()
@@ -19,7 +19,7 @@ Dog &Dog::operator=(Dog &dog)
 {
 	Animal::operator=(dog);
 	return *this;
-}1
+}
 // ~Canonical Form
 
 void Dog::makeSound() const

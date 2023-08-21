@@ -1,4 +1,4 @@
-#include "cat.hpp"
+#include "Cat.hpp"
 
 // brainポインタに新しいBrainオブジェクトが割り当てられる。
 Cat::Cat()

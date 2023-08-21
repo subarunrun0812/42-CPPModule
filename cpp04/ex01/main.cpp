@@ -1,6 +1,6 @@
-#include "animal.hpp"
-#include "dog.hpp"
-#include "cat.hpp"
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 #include <stdlib.h>
 
 int main()
@@ -33,7 +33,6 @@ int main()
 	std::cout << std::endl
 			  << "========================" << std::endl
 			  << std::endl;
-
 	{
 		// Animal objectsの配列を作成。DogとCatオブジェの半分ずつ
 		Animal *(animal_array[4]);

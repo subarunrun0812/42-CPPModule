@@ -1,4 +1,4 @@
-#include "animal.hpp"
+#include "Animal.hpp"
 
 Animal::Animal() : type("Unknown")
 {
@@ -10,12 +10,12 @@ Animal::~Animal()
 	std::cout << "Animal\tdestructor called" << std::endl;
 }
 
-Animal::Animal(const Animal& animal)
+Animal::Animal(const Animal &animal)
 {
 	this->type = animal.type;
 	// std::cout << "Animal Copy Constructor" << std::endl;
 }
-Animal& Animal::operator=(const Animal& animal)
+Animal &Animal::operator=(const Animal &animal)
 {
 	this->type = animal.type;
 	return *this;

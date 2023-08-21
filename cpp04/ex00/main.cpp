@@ -1,19 +1,11 @@
-#include "animal.hpp"
-#include "dog.hpp"
-#include "cat.hpp"
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
 int main()
 {
-	{
-		Animal animal;
-		std::cout << std::endl;
-	}
-	std::cout << std::endl
-			  << "========================" << std::endl
-			  << std::endl;
-
 	{
 		const Animal *meta = new Animal();
 		const Animal *j = new Dog();
