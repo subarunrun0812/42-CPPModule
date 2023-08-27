@@ -2,8 +2,13 @@
 
 int main()
 {
-    Bureaucrat obj1("BIGGERST", 1);
-    Bureaucrat obj150("LOWERST", 150);
-    Bureaucrat obj0("TOO_SMALL", 0);
-    Bureaucrat obj300("TOO_BIG", 300);
+	try {
+		Bureaucrat bureaucrat("BIGGERST", 1);
+		std::cout << bureaucrat << std::endl;
+	}
+	catch (Bureaucrat::GradeTooHighException& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	return (0);
 }

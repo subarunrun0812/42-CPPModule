@@ -17,13 +17,20 @@ public:
 	//TODO:gradeが1~150以外のものから、例外が投げられた時のthrowの処理を作成
 	Bureaucrat();
 	~Bureaucrat();
-	Bureaucrat(const Bureaucrat &Bureaucrat);
+	Bureaucrat(const Bureaucrat& Bureaucrat);
 	Bureaucrat& operator=(const Bureaucrat& bureaucrat);
 	Bureaucrat(std::string name, int grade);
-	void GradeTooHighException();
-	void GradeTooLowException();
 	std::string getName(void) const;
 	int getGrade(void) const;
+	/* ---------------- 例外クラス ---------------- */
+	class GradeTooHighException : public std::exception {
+	public:
+		virtual const char* what() const throw() { return "Grade too high"; }
+	};
+	class GradeTooLowException : public std::exception {
+	public:
+		virtual const char* what() const throw() { return "Grade too low"; }
+	};
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
