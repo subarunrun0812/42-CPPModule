@@ -24,31 +24,37 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
 	return *this;
 }
 
-void checkGrade(int grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
 {
-	// gradeの値を確認
-	if (grade < 0)
+	if (grade < 1)
 	{
-		// throw GradeTooLowException();
+		throw GradeTooLowException();
 	}
 	else if (150 < grade)
 	{
-		// throw GradeTooHighException();
+		throw GradeTooHighException();
 	}
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
+void Bureaucrat::decrementGrade()
 {
-	// TODO: throwを投げる処理を行う
-	if (grade < 1)
+	std::cout << "decrementGrade()" << std::endl;
+	if (this->grade - 1 < 1)
 	{
-		throw GradeTooHighException();
+		throw GradeTooLowException();
 	}
-	else if (150 < grade)
-	{
-		throw GradeTooHighException();
-	}
+	this->grade--;
 }
+void Bureaucrat::incrementGrade()
+{
+	std::cout << "incrementGrade()" << std::endl;
+	if (150 < this->grade + 1)
+	{
+		throw GradeTooHighException();
+	}
+	this->grade++;
+}
+
 std::string Bureaucrat::getName(void) const
 {
 	return (this->name);
@@ -57,11 +63,8 @@ int Bureaucrat::getGrade(void) const
 {
 	return (this->grade);
 }
-/*
-TODO: <name>, bureaucrat grade <grade>.
-*/
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
 {
-	os << bureaucrat.getName() << ":" << bureaucrat.getGrade();
+	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
 	return os;
 }
