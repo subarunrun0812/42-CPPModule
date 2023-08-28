@@ -10,14 +10,14 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "destructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat)
+Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
 {
 	this->grade = bureaucrat.getGrade();
 	this->name = bureaucrat.getName();
 	std::cout << "copy constructor called" << std::endl;
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat)
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
 {
 	this->grade = bureaucrat.getGrade();
 	this->name = bureaucrat.getName();
@@ -37,18 +37,17 @@ void checkGrade(int grade)
 	}
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
 {
-	this->name = name;
-	try
+	// TODO: throwを投げる処理を行う
+	if (grade < 1)
 	{
-		checkGrade();
+		throw GradeTooHighException();
 	}
-	catch (const std::exception& e)
+	else if (150 < grade)
 	{
-		std::cerr << e.what() << '\n';
+		throw GradeTooHighException();
 	}
-
 }
 std::string Bureaucrat::getName(void) const
 {
@@ -61,8 +60,8 @@ int Bureaucrat::getGrade(void) const
 /*
 TODO: <name>, bureaucrat grade <grade>.
 */
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
 {
-	os << bureaucrat.getGrade();
+	os << bureaucrat.getName() << ":" << bureaucrat.getGrade();
 	return os;
 }
