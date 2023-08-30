@@ -1,7 +1,7 @@
 #include "Form.hpp"
 
 Form::Form(const std::string &name, int gradeToSign)
-    : name(name), sign(false),gradeToSign(gradeToSign), gradeToExecute(0)
+    : name(name), sign(false), gradeToSign(gradeToSign), gradeToExecute(0)
 {
     if (gradeToSign < 1)
     {

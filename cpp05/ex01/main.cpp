@@ -7,7 +7,7 @@ void NormalTest_0()
 	try
 	{
 		Bureaucrat bureaucrat("NAME_NORMAL_0", 11);
-		Form form("formName", 10);
+		Form form("formName", 15);
 		bureaucrat.signForm(form);
 
 		std::cout << form << std::endl;

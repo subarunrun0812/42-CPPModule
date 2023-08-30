@@ -2,19 +2,19 @@
 
 Bureaucrat::Bureaucrat()
 {
-	std::cout << "construcotor called" << std::endl;
+	std::cout << "Bure\tconstrucotor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "destructor called" << std::endl;
+	std::cout << "Bure\tdestructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
 {
 	this->grade = bureaucrat.getGrade();
 	this->name = bureaucrat.getName();
-	std::cout << "copy constructor called" << std::endl;
+	std::cout << "Bure\tcopy constructor called" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
