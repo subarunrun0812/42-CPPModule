@@ -10,6 +10,9 @@
 #define NORMAL "\x1b[0m"
 #define DELIMITER_HALF "=========="
 
+// 前方宣言
+class Form;
+
 class Bureaucrat
 {
 private:

@@ -10,15 +10,19 @@
 #define NORMAL "\x1b[0m"
 #define DELIMITER_HALF "=========="
 
+// 前方宣言
+class Bureaucrat;
+
 class Form
 {
 private:
     std::string name;
     bool sign;
-    const int gradeToSign;
-    const int gradeToExecute;
+    int gradeToSign;
+    int gradeToExecute;
 
 public:
+    Form();
     Form(std::string &name, int gradeToSign, int gradeToExecute);
     // Form();
     ~Form();
@@ -26,10 +30,10 @@ public:
     Form &operator=(const Form &form);
     void beSigned(const Bureaucrat &bureaucrat);
     std::string getName() const;
+    bool getSign() const;
     int getGradeToSign() const;
     int getGradeToExecute() const;
-    // TODO:<<のオーバーロード
-
+    Form(const std::string &name, int gradeToSign);
     /* ---------------- 例外クラス ---------------- */
     class GradeTooHighException : public std::exception
     {
@@ -42,5 +46,7 @@ public:
         virtual const char *what() const throw() { return RED "Grade too low" NORMAL; }
     };
 };
+
+std::ostream &operator<<(std::ostream &os, const Form &form);
 
 #endif
