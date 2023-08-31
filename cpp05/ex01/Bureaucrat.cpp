@@ -2,7 +2,7 @@
 
 Bureaucrat::Bureaucrat()
 {
-	std::cout << "Bure\tconstrucotor called" << std::endl;
+	std::cout << "Bure\tdefault construcotor called" << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
@@ -62,7 +62,7 @@ std::string Bureaucrat::getName(void) const
 int Bureaucrat::getGrade(void) const
 {
 	return (this->grade);
-}
+} 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
 {
 	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();

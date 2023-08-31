@@ -3,6 +3,7 @@
 Form::Form(const std::string &name, int gradeToSign)
     : name(name), sign(false), gradeToSign(gradeToSign), gradeToExecute(0)
 {
+    std::cout << "Form\tconstructor called" << std::endl;
     if (gradeToSign < 1)
     {
         throw GradeTooLowException();
@@ -62,6 +63,7 @@ int Form::getGradeToExecute() const
 
 std::ostream &operator<<(std::ostream &os, const Form &form)
 {
+    os << "~~ Form ~~" << std::endl;
     os << "Name:\t" << form.getName() << std::endl;
     os << "Sign:\t" << form.getSign() << std::endl;
     os << "GradeToSign:\t" << form.getGradeToSign() << std::endl;
