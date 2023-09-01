@@ -10,14 +10,14 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Bure\tdestructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
+Bureaucrat::Bureaucrat(const Bureaucrat& bureaucrat)
 {
 	this->grade = bureaucrat.getGrade();
 	this->name = bureaucrat.getName();
 	std::cout << "Bure\tcopy constructor called" << std::endl;
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& bureaucrat)
 {
 	this->grade = bureaucrat.getGrade();
 	this->name = bureaucrat.getName();
@@ -62,27 +62,37 @@ std::string Bureaucrat::getName(void) const
 int Bureaucrat::getGrade(void) const
 {
 	return (this->grade);
-} 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
+}
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 {
 	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
 	return os;
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(Form& form)
 {
 	try
 	{
 		form.beSigned(*this);
 		std::cout << *this << " signed " << form.getName() << std::endl;
 	}
-	catch (GradeTooHighException &e)
+	catch (GradeTooHighException& e)
 	{
 		std::cout << *this << " couldn't sign " << form.getName()
-				  << "because" << e.what() << "." << std::endl;
+			<< "because" << e.what() << "." << std::endl;
 	}
 }
-void execute(Bureaucrat const &executor) const
+void Bureaucrat::executeForm(const Form& form)
 {
-	
+	try
+	{
+		form.execute(*this);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+
+	std::cout << this->name << "executed" << form << std::endl;
 }
