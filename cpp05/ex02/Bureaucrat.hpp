@@ -4,14 +4,14 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #define RED "\x1b[31m"
 #define NORMAL "\x1b[0m"
 #define DELIMITER_HALF "=========="
 
 // 前方宣言
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -28,8 +28,8 @@ public:
 	int getGrade(void) const;
 	void incrementGrade();
 	void decrementGrade();
-	void signForm(Form& form);
-	void executeForm(const Form& form);
+	void signForm(AForm& aform);
+	void executeForm(const AForm& aform);
 
 	/* ---------------- 例外クラス ---------------- */
 	class GradeTooHighException : public std::exception

@@ -2,9 +2,13 @@ NAME = ex02
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
+ifdef DEBUG
+	CFLAGS += -DDEBUG
+endif
+
 SOURCES = main.cpp\
 			Bureaucrat.cpp\
-			Form.cpp\
+			AForm.cpp\
 			PresidentialPardonForm.cpp\
 			RobotomyRequestForm.cpp\
 			ShrubberyCreationForm.cpp\
