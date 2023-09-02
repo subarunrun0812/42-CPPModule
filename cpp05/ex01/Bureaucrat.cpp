@@ -26,6 +26,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
 {
+	std::cout << "Bure\tconstrucotor called" << std::endl;
 	if (grade < 1)
 	{
 		throw GradeTooLowException();

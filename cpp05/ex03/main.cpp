@@ -29,3 +29,11 @@ int main(void)
     NormalTest_1();
     ErrorTest_1();
 }
+
+#ifdef DEBUG
+#include <stdlib.h>
+__attribute__((destructor)) static void destructor(void)
+{
+    system("leaks -q ex03");
+}
+#endif
