@@ -78,21 +78,24 @@ void printInt(int _i)
     else
         std::cout << "int: impossible" << std::endl;
 }
-void printFloat(float _f)
+void printFloat(float _f, int num)
 {
-    std::cout << "float: " << _f << "f" << std::endl;
+    std::cout << "float: ";
+    // float型で出力する際、不要な末尾のゼロも表示するようにする
+    std::cout << std::fixed << std::setprecision(num) << _f;
+    std::cout << "f" << std::endl;
 }
 void printDouble(double _d)
 {
     std::cout << "double: " << _d << std::endl;
 }
 
-void PrintAll(char _c, int _i, float _f, double _d)
+void PrintAll(char _c, int _i, float _f, double _d, int num)
 {
     std::cout << GREEN;
     printChar(_c);
     printInt(_i);
-    printFloat(_f);
+    printFloat(_f, num);
     printDouble(_d);
     std::cout << NORMAL;
 }
@@ -114,7 +117,7 @@ void ScalarConverter::convert(const std::string &str)
         int _i = static_cast<int>(_c);
         float _f = static_cast<float>(_c);
         double _d = static_cast<double>(_c);
-        PrintAll(_c, _i, _f, _d);
+        PrintAll(_c, _i, _f, _d, 1);
     }
     else if (type == INT)
     {
@@ -122,25 +125,42 @@ void ScalarConverter::convert(const std::string &str)
         char _c = static_cast<char>(_i);
         float _f = static_cast<float>(_i);
         double _d = static_cast<double>(_i);
-        PrintAll(_c, _i, _f, _d);
+        PrintAll(_c, _i, _f, _d, 1);
     }
-    else if (type == FLOAT)
+    else if (type == FLOAT || type == DOUBLE)
     {
-        std::cout << "str = " << str << std::endl;
-        float _f = std::stof(str);
-        std::cout << "_f = " << _f << std::endl;
-        char _c = static_cast<char>(_f);
-        int _i = static_cast<int>(_f);
-        double _d = static_cast<double>(_f);
-        PrintAll(_c, _i, _f, _d);
-    }
-    else if (type == DOUBLE)
-    {
-        double _d = std::stod(str);
-        char _c = static_cast<char>(_d);
-        int _i = static_cast<int>(_d);
-        float _f = static_cast<float>(_d);
-        PrintAll(_c, _i, _f, _d);
+        // 小数点以下の文字列を数える
+        int num = 1;
+        bool flag = false;
+        for (size_t i = 0; i < str.length(); i++)
+        {
+            if ('0' <= str[i] && str[i] <= '9' && flag == true)
+            {
+                num++;
+            }
+            if (str[i] == '.')
+            {
+                num = 0;
+                flag = true;
+            }
+        }
+        std::cout << "num = " << num << std::endl;
+        if (type == FLOAT)
+        {
+            float _f = std::stof(str);
+            char _c = static_cast<char>(_f);
+            int _i = static_cast<int>(_f);
+            double _d = static_cast<double>(_f);
+            PrintAll(_c, _i, _f, _d, num);
+        }
+        else if (type == DOUBLE)
+        {
+            double _d = std::stod(str);
+            char _c = static_cast<char>(_d);
+            int _i = static_cast<int>(_d);
+            float _f = static_cast<float>(_d);
+            PrintAll(_c, _i, _f, _d, num);
+        }
     }
     // // char
     // if (str.length() == 1)
