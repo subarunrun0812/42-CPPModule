@@ -8,9 +8,6 @@ endif
 
 SOURCES = main.cpp\
 			Base.cpp\
-			A.cpp\
-			B.cpp\
-			C.cpp\
 
 all : $(NAME)
 
