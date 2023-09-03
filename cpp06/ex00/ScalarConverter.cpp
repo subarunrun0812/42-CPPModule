@@ -64,16 +64,25 @@ std::string ScalarConverter::SetType(const std::string &str)
         return NONE;
 }
 
-void printChar(char _c)
+void printChar(char _c, bool decimal_flag)
 {
-    if ('!' <= _c && _c <= '~')
-        std::cout << "char: " << _c << std::endl;
+    if ((0 <= _c && _c < '!') || ('~' < _c && _c <= 127))
+    {
+        if (decimal_flag == true)
+            std::cout << "char: impossible" << std::endl;
+        else
+            std::cout << "char: Non displayable" << std::endl;
+    }
+    else if ('!' <= _c && _c <= '~')
+        std::cout << "char: '" << _c << "'" << std::endl;
     else
-        std::cout << "char: Non displayable" << std::endl;
+        std::cout << "char: impossible" << std::endl;
 }
-void printInt(int _i)
+void printInt(int _i, bool decimal_flag)
 {
-    if (INT_MIN <= _i && _i <= INT_MAX)
+    if ((INT_MIN == _i || INT_MAX == _i) && decimal_flag == true)
+        std::cout << "int: impossible" << std::endl;
+    else if (INT_MIN <= _i && _i <= INT_MAX)
         std::cout << "int: " << _i << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
@@ -90,11 +99,11 @@ void printDouble(double _d)
     std::cout << "double: " << _d << std::endl;
 }
 
-void PrintAll(char _c, int _i, float _f, double _d, int num)
+void PrintAll(char _c, int _i, float _f, double _d, int num, bool decimal_flag)
 {
     std::cout << GREEN;
-    printChar(_c);
-    printInt(_i);
+    printChar(_c, decimal_flag);
+    printInt(_i, decimal_flag);
     printFloat(_f, num);
     printDouble(_d);
     std::cout << NORMAL;
@@ -103,21 +112,21 @@ void ScalarConverter::convert(const std::string &str)
 {
     // 受け取った文字列が何の型か判断する
     std::string type = SetType(str);
+#ifdef DEBUG
+    std::cout << "type = " << type << std::endl;
+#endif
     if (type == NONE)
     {
         std::cout << RED "どの型にも一致しません" NORMAL << std::endl;
         return;
     }
-#ifdef DEBUG
-    std::cout << "type = " << type << std::endl;
-#endif
     if (type == CHAR)
     {
         char _c = str[0];
         int _i = static_cast<int>(_c);
         float _f = static_cast<float>(_c);
         double _d = static_cast<double>(_c);
-        PrintAll(_c, _i, _f, _d, 1);
+        PrintAll(_c, _i, _f, _d, 1, false);
     }
     else if (type == INT)
     {
@@ -125,7 +134,7 @@ void ScalarConverter::convert(const std::string &str)
         char _c = static_cast<char>(_i);
         float _f = static_cast<float>(_i);
         double _d = static_cast<double>(_i);
-        PrintAll(_c, _i, _f, _d, 1);
+        PrintAll(_c, _i, _f, _d, 1, false);
     }
     else if (type == FLOAT || type == DOUBLE)
     {
@@ -144,14 +153,16 @@ void ScalarConverter::convert(const std::string &str)
                 flag = true;
             }
         }
-        std::cout << "num = " << num << std::endl;
+#ifdef DEBUG
+        std::cout << "小数部分の値の数は" << num << std::endl;
+#endif
         if (type == FLOAT)
         {
             float _f = std::stof(str);
             char _c = static_cast<char>(_f);
             int _i = static_cast<int>(_f);
             double _d = static_cast<double>(_f);
-            PrintAll(_c, _i, _f, _d, num);
+            PrintAll(_c, _i, _f, _d, num, true);
         }
         else if (type == DOUBLE)
         {
@@ -159,7 +170,7 @@ void ScalarConverter::convert(const std::string &str)
             char _c = static_cast<char>(_d);
             int _i = static_cast<int>(_d);
             float _f = static_cast<float>(_d);
-            PrintAll(_c, _i, _f, _d, num);
+            PrintAll(_c, _i, _f, _d, num, true);
         }
     }
     // // char

@@ -8,7 +8,6 @@ int main(int argc, char **argv)
     }
     else if (argc == 2)
     {
-        // TODO:受け取った引数をcastして、出力する
         ScalarConverter::convert(argv[1]);
     }
     else
