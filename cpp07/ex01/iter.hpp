@@ -10,9 +10,18 @@
 #include <iostream>
 
 template <typename T>
-void print(T &num)
+void Output(const T &num)
 {
     std::cout << num << std::endl;
+}
+
+template <typename T>
+void iter(T *arr, size_t num, void (*func)(const T &))
+{
+    for (size_t i = 0; i < num; i++)
+    {
+        func(arr[i]);
+    }
 }
 
 template <typename T>

@@ -9,7 +9,7 @@
 #include <iostream>
 
 template <typename T>
-void swap(T& num1, T& num2)
+void swap(T &num1, T &num2)
 {
 	T tmp;
 	tmp = num1;
