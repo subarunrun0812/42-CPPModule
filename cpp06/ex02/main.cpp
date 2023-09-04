@@ -3,10 +3,10 @@
 #include "C.hpp"
 #include "Base.hpp"
 
-Base* generate(void)
+Base *generate(void)
 {
-	//TODO:ランダムにA,B,Cクラスをインスタンス化する
-	// シードの設定
+	// TODO:ランダムにA,B,Cクラスをインスタンス化する
+	//  シードの設定
 	srand(static_cast<unsigned int>(time(0)));
 
 	int random_num = rand() % 3;
@@ -32,48 +32,52 @@ Base* generate(void)
 	return NULL;
 }
 
-void identify(Base* p)
+void identify(Base *p)
 {
 	std::cout << LINE " ポインタ型 " LINE << std::endl;
-	if (dynamic_cast<A*>(p))
+	if (dynamic_cast<A *>(p))
 		std::cout << GREEN "これはAオブジェクトです!!" NORMAL << std::endl;
-	else if (dynamic_cast<B*>(p))
+	else if (dynamic_cast<B *>(p))
 		std::cout << GREEN "これはBオブジェクトです!!" NORMAL << std::endl;
-	else if (dynamic_cast<C*>(p))
+	else if (dynamic_cast<C *>(p))
 		std::cout << GREEN "これはCオブジェクトです!!" NORMAL << std::endl;
-
 }
 
-void identify(Base& p)
+void identify(Base &p)
 {
 	std::cout << LINE " 参照型 " LINE << std::endl;
 	try
 	{
-		A& a = dynamic_cast<A&>(p);
+		A &a = dynamic_cast<A &>(p);
 		(void)a;
 		std::cout << GREEN "これはAオブジェクトです!!" NORMAL << std::endl;
 	}
-	catch (const std::bad_cast& e) {}
+	catch (const std::bad_cast &e)
+	{
+	}
 	try
 	{
-		B& b = dynamic_cast<B&>(p);
+		B &b = dynamic_cast<B &>(p);
 		(void)b;
 		std::cout << GREEN "これはBオブジェクトです!!" NORMAL << std::endl;
 	}
-	catch (const std::bad_cast& e) {}
+	catch (const std::bad_cast &e)
+	{
+	}
 	try
 	{
-		C& c = dynamic_cast<C&>(p);
+		C &c = dynamic_cast<C &>(p);
 		(void)c;
 		std::cout << GREEN "これはCオブジェクトです!!" NORMAL << std::endl;
 	}
-	catch (const std::bad_cast& e) {}
-
+	catch (const std::bad_cast &e)
+	{
+	}
 }
 
 int main(void)
 {
-	Base* base = generate();
+	Base *base = generate();
 	identify(base);
 	identify(*base);
 }

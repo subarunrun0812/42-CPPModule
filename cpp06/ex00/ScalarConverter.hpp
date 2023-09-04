@@ -25,8 +25,6 @@ private:
 
 public:
     static void convert(const std::string &str);
-    static std::string SetType(const std::string &str);
-    // static void printInt(const std::string &str, const std::string &type);
 };
 
 #endif

@@ -7,7 +7,8 @@ ifdef DEBUG
 endif
 
 SOURCES = main.cpp\
-			ScalarConverter.cpp
+			ScalarConverter.cpp\
+			PrintAll.cpp
 
 all : $(NAME)
 
