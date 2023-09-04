@@ -80,4 +80,12 @@ int main(void)
 	Base *base = generate();
 	identify(base);
 	identify(*base);
+	delete base;
 }
+#ifdef DEBUG
+#include <stdlib.h>
+__attribute__((destructor)) static void destructor(void)
+{
+	system("leaks -q ex02");
+}
+#endif
