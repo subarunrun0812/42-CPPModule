@@ -16,17 +16,16 @@
 //========== 例外クラス ==========
 class NotFindIterator : public std::exception
 {
-	const char* what() const throw()
+	const char *what() const throw()
 	{
 		return (RED "対象の整数がSTLコンテナから見つからなかった" NORMAL);
 	}
 };
 
-
 template <typename T>
 typename T::iterator EasyFind(T container, int num)
 {
-	typename T::iterator res = \
+	typename T::iterator res =
 		std::find(container.begin(), container.end(), num);
 	if (res == container.end())
 	{
@@ -34,6 +33,5 @@ typename T::iterator EasyFind(T container, int num)
 	}
 	return (res);
 }
-
 
 #endif

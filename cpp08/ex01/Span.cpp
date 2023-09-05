@@ -49,7 +49,7 @@ void Span::addNumber(int num)
     }
     else
     {
-        throw NotEnoughElement();
+        throw TooManyElements();
     }
 }
 int Span::shortestSpan()
