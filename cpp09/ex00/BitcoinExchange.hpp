@@ -39,16 +39,18 @@ A=input.txtの日付をdata.csvから見つける。無い場合は、その日�
 class BitcoinExchange
 {
 private:
-    std::map<std::string, float> _map;
+	std::map<std::string, float> _map;
 
 public:
-    BitcoinExchange();
-    ~BitcoinExchange();
-    BitcoinExchange(const BitcoinExchange &bitcoinExchange);
-    BitcoinExchange &operator=(const BitcoinExchange &bitcoinExchange);
+	BitcoinExchange();
+	~BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange& bitcoinExchange);
+	BitcoinExchange& operator=(const BitcoinExchange& bitcoinExchange);
 
-    int EditFile(std::string fileName);
-    void DataTokenize(std::string line);
+	int EditFile(std::string fileName);
+	void DataTokenize(std::string line);
+	void NumberOfCurrency(std::string fileName);
+	void NumberOfCurrencyTokenize(std::string line);
 };
 
 #endif
