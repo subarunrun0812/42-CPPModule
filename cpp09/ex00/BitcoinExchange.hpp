@@ -36,21 +36,58 @@ A=input.txtの日付をdata.csvから見つける。無い場合は、その日�
 所有しているビットコイン達の価値 = A * value
 */
 
-class BitcoinExchange
+class BX
 {
 private:
 	std::map<std::string, float> _map;
 
 public:
-	BitcoinExchange();
-	~BitcoinExchange();
-	BitcoinExchange(const BitcoinExchange& bitcoinExchange);
-	BitcoinExchange& operator=(const BitcoinExchange& bitcoinExchange);
+	BX();
+	~BX();
+	BX(const BX &bx);
+	BX &operator=(const BX &bx);
 
 	int EditFile(std::string fileName);
 	void DataTokenize(std::string line);
 	void NumberOfCurrency(std::string fileName);
 	void NumberOfCurrencyTokenize(std::string line);
+	void IsValidData(std::string data);
+	void IsValidDataFind(size_t pos);
+	void IsValidDataYearMonthDay(size_t year, size_t month, size_t day);
+	int stringToInt(const std::string &str);
+	float stringToFloat(const std::string &str);
+
+	class ErrorData : public std::exception
+	{
+	public:
+		const char *what() const throw()
+		{
+			return (RED "Error: bad input" NORMAL);
+		}
+	};
+	class LargeANumber : public std::exception
+	{
+	public:
+		const char *what() const throw()
+		{
+			return (RED "Error: too large a number" NORMAL);
+		}
+	};
+	class SmallANumber : public std::exception
+	{
+	public:
+		const char *what() const throw()
+		{
+			return (RED "Error: not a positive number" NORMAL);
+		}
+	};
+	class TypeConversionFailure : public std::exception
+	{
+		const char *what() const throw()
+		{
+			return (RED "型変換に失敗した" NORMAL);
+		}
+	};
 };
 
 #endif

@@ -1,20 +1,20 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange()
+BX::BX()
 {
 }
 
-BitcoinExchange::~BitcoinExchange()
+BX::~BX()
 {
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &bitcoinExchange)
+BX::BX(const BX &bx)
 {
-    (void)bitcoinExchange;
+    (void)bx;
 }
 
-BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchange)
+BX &BX::operator=(const BX &bx)
 {
-    (void)bitcoinExchange;
+    (void)bx;
     return (*this);
 }
