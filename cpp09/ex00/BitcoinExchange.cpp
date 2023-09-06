@@ -63,7 +63,37 @@ void BX::DataTokenize(std::string line)
 	}
 }
 
+float BX::fetchNearestValue(const std::string& dataStr)
+{
+	std::map<std::string, float>::iterator it = _map.lower_bound(dataStr);
+	// dataStr より前の最も近い日付
+	if (it != _map.begin())
+		--it;
+	return it->second;
+}
 
+float BX::validateNumber(const std::string& data)
+{
+	size_t pos = data.find("|");
+	if (pos == std::string::npos)
+	{
+		std::cout << RED "Error: data or value is missing" NORMAL << std::endl;
+		throw ErrorData();
+	}
+	std::string numberStr = data.substr(pos + 1);
+	size_t startNumber = numberStr.find_first_not_of(" \t");
+	if (startNumber != std::string::npos)
+	{
+		numberStr = numberStr.substr(startNumber);
+	}
+	float number = stringToFloat(numberStr);
+	if (number < 0)
+		throw SmallANumber();
+	if (1000 < number)
+		throw LargeANumber();
+
+	return number;
+}
 
 void BX::IsValidDataYearMonthDay(size_t year, size_t month, size_t day)
 {
@@ -110,7 +140,6 @@ void BX::IsValidDataYearMonthDay(size_t year, size_t month, size_t day)
 	else
 		throw ErrorData();
 }
-
 void BX::IsValidDataFind(size_t pos)
 {
 	if (pos == std::string::npos)
@@ -150,30 +179,11 @@ void BX::IsValidData(std::string data)
 		size_t year, month, day;
 		tokenizeDate(data, year, month, day);
 		IsValidDataYearMonthDay(year, month, day);
+		float number = validateNumber(data);
 
-		// 有効な数値のチェック(0~1000)
-		size_t pos = data.find("|");
-		if (pos == std::string::npos)
-		{
-			std::cout << RED "Error: data or value is missing" NORMAL << std::endl;
-		}
-		std::string numberStr = data.substr(pos + 1);
-		size_t startNumber = numberStr.find_first_not_of(" \t");
-		if (startNumber != std::string::npos)
-		{
-			numberStr = numberStr.substr(startNumber);
-		}
-		float number = stringToFloat(numberStr);
-		if (number < 0)
-			throw SmallANumber();
-		if (1000 < number)
-			throw LargeANumber();
-		std::string dataStr = data.substr(0, pos);
-		std::map<std::string, float>::iterator it = _map.lower_bound(dataStr);
-		// dataStr より前の最も近い日付
-		if (it != _map.begin())
-			--it;
-		float value = it->second;
+		std::string dataStr = data.substr(0, data.find("|"));
+		float value = fetchNearestValue(dataStr);
+
 		std::cout << GREEN << dataStr << "=> " << number
 			<< " = " << number * value << NORMAL << std::endl;
 	}
@@ -191,14 +201,6 @@ void BX::IsValidData(std::string data)
 	}
 }
 
-// float BX::fetchNearestValue(const std::string& dataStr)
-// {
-// 	std::map<std::string, float>::iterator it = _map.lower_bound(dataStr);
-// 	// dataStr より前の最も近い日付
-// 	if (it != _map.begin())
-// 		--it;
-// 	return it->second;
-// }
 
 
 void BX::Read_File(std::string fileName, void (BX::* tokenizeFunc)(std::string))

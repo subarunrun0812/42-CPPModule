@@ -52,8 +52,8 @@ public:
 	void Read_File(std::string fileName, void (BX::* tokenizeFunc)(std::string));
 	void DataTokenize(std::string line);
 	void NumberOfCurrencyTokenize(std::string line);
-	// float fetchNearestValue(const std::string& dataStr);
-	// float validateNumber(const std::string& data);
+	float fetchNearestValue(const std::string& dataStr);
+	float validateNumber(const std::string& data);
 	void tokenizeDate(const std::string& data, size_t& year, size_t& month, size_t& day);
 	void IsValidData(std::string data);
 	void IsValidDataFind(size_t pos);
