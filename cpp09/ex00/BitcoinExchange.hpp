@@ -40,28 +40,31 @@ class BX
 {
 private:
 	std::map<std::string, float> _map;
-	
+
 
 public:
 	BX();
 	~BX();
-	BX(const BX &bx);
-	BX &operator=(const BX &bx);
+	BX(const BX& bx);
+	BX& operator=(const BX& bx);
 
-	int EditFile(std::string fileName);
+	int Currency(std::string fileName);
+	void Read_File(std::string fileName, void (BX::* tokenizeFunc)(std::string));
 	void DataTokenize(std::string line);
-	void NumberOfCurrency(std::string fileName);
 	void NumberOfCurrencyTokenize(std::string line);
+	// float fetchNearestValue(const std::string& dataStr);
+	// float validateNumber(const std::string& data);
+	// void tokenizeDate(const std::string& data, size_t& year, size_t& month, size_t& day);
 	void IsValidData(std::string data);
 	void IsValidDataFind(size_t pos);
 	void IsValidDataYearMonthDay(size_t year, size_t month, size_t day);
-	int stringToInt(const std::string &str);
-	float stringToFloat(const std::string &str);
+	int stringToInt(const std::string& str);
+	float stringToFloat(const std::string& str);
 
 	class ErrorData : public std::exception
 	{
 	public:
-		const char *what() const throw()
+		const char* what() const throw()
 		{
 			return (RED "Error: bad input" NORMAL);
 		}
@@ -69,7 +72,7 @@ public:
 	class LargeANumber : public std::exception
 	{
 	public:
-		const char *what() const throw()
+		const char* what() const throw()
 		{
 			return (RED "Error: too large a number" NORMAL);
 		}
@@ -77,14 +80,14 @@ public:
 	class SmallANumber : public std::exception
 	{
 	public:
-		const char *what() const throw()
+		const char* what() const throw()
 		{
 			return (RED "Error: not a positive number" NORMAL);
 		}
 	};
 	class TypeConversionFailure : public std::exception
 	{
-		const char *what() const throw()
+		const char* what() const throw()
 		{
 			return (RED "型変換に失敗した" NORMAL);
 		}
