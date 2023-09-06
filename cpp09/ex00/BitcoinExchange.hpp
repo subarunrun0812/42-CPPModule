@@ -40,6 +40,7 @@ class BX
 {
 private:
 	std::map<std::string, float> _map;
+	
 
 public:
 	BX();

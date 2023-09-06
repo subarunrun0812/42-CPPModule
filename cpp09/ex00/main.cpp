@@ -144,7 +144,19 @@ void BX::IsValidData(std::string data)
         // 所有しているビットコイン群の価値
         std::string dataStr = data.substr(0, pos);
         // TODO: 保持している年月日に近いものをdata.csvから見つける
-        float value = 10;
+        // mapコンテナのlowerbound or upperboundメソッドを使って、
+        // 一番近い数値を見つける
+        std::map<std::string, float>::iterator it = _map.lower_bound(dataStr);
+        // dataStr より前の最も近い日付
+        if (it != _map.begin())
+        {
+            // std::cout << "iteratorをデクリメント" << std::endl;
+            --it;
+        }
+        // std::cout << it->first << std::endl;
+        // dataStrより前の最も近い日付を見つけるために、iteratorをデクリメントする
+        // float value = _map[it->first];
+        float value = it->second;
         std::cout << GREEN << dataStr << "=> " << number
                   << " = " << number * value << NORMAL << std::endl;
     }
