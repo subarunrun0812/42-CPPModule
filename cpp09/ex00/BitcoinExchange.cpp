@@ -111,65 +111,45 @@ void BX::IsValidDataYearMonthDay(size_t year, size_t month, size_t day)
 		throw ErrorData();
 }
 
-// void BX::tokenizeDate(const std::string& data, size_t& year, size_t& month, size_t& day)
-// {
-// 	// 年
-// 	size_t yearPos = data.find('-');
-// 	IsValidDataFind(yearPos);
-// 	std::string yearStr = data.substr(0, yearPos);
-// 	year = stringToInt(yearStr);
-
-// 	// 月
-// 	size_t monthPos = data.find('-', yearPos + 1);
-// 	IsValidDataFind(monthPos);
-// 	std::string monthStr = data.substr(yearPos + 1, monthPos - yearPos - 1);
-// 	month = stringToInt(monthStr);
-
-// 	// 日
-// 	size_t dayPos = data.find('-', monthPos + 1);
-// 	IsValidDataFind(dayPos);
-// 	std::string dayStr = data.substr(monthPos + 1, dayPos - monthPos - 1);
-// 	day = stringToInt(dayStr);
-
-// #ifdef DEBUG
-// 	std::cout << "year:" << year << std::endl;
-// 	std::cout << "month:" << month << std::endl;
-// 	std::cout << "day:" << day << std::endl;
-// #endif
-// }
-
-
 void BX::IsValidDataFind(size_t pos)
 {
 	if (pos == std::string::npos)
+	{
+		std::cout << "IsValidDataFind()" << std::endl;
 		throw ErrorData();
+	}
+}
+void BX::tokenizeDate(const std::string& data, size_t& year, size_t& month, size_t& day)
+{
+	// 年
+	size_t yearPos = data.find('-');
+	IsValidDataFind(yearPos);
+	std::string yearStr = data.substr(0, yearPos);
+	year = stringToInt(yearStr);
+	// 月
+	size_t monthPos = data.find('-', yearPos + 1);
+	IsValidDataFind(monthPos);
+	std::string monthStr = data.substr(yearPos + 1, monthPos);
+	month = stringToInt(monthStr);
+	// 日
+	std::string dayStr = data.substr(monthPos + 1);
+	day = stringToInt(dayStr);
+
+
+#ifdef DEBUG
+	std::cout << "year:" << year << std::endl;
+	std::cout << "month:" << month << std::endl;
+	std::cout << "day:" << day << std::endl;
+#endif
 }
 
 void BX::IsValidData(std::string data)
 {
 	try
 	{
-		// 年
-		size_t yearPos = data.find('-');
-		IsValidDataFind(yearPos);
-		std::string yearStr = data.substr(0, yearPos);
-		size_t year = stringToInt(yearStr);
-		// 月
-		size_t monthPos = data.find('-');
-		IsValidDataFind(monthPos);
-		std::string monthStr = data.substr(yearPos + 1, monthPos);
-		size_t month = stringToInt(monthStr);
-		// 日
-		size_t dayPos = data.find('-');
-		IsValidDataFind(dayPos);
-		std::string dayStr = data.substr(monthPos + 1, dayPos);
-		size_t day = stringToInt(dayStr);
+		size_t year, month, day;
+		tokenizeDate(data, year, month, day);
 		IsValidDataYearMonthDay(year, month, day);
-#ifdef DEBUG
-		std::cout << "year:" << year << std::endl;
-		std::cout << "month:" << month << std::endl;
-		std::cout << "day:" << day << std::endl;
-#endif
 
 		// 有効な数値のチェック(0~1000)
 		size_t pos = data.find("|");
