@@ -12,11 +12,9 @@
 #include <iostream>
 #include <stack>
 #include <sstream>
-/*TODO:
-引数で受け取る値は、0 ~ 10
 
-*/
 
+int ReversePolishNotation(std::string line);
 class ErrorTokenize : public std::exception
 {
 	const char* what() const throw()
@@ -38,6 +36,14 @@ class ErrorOperator : public std::exception
 	const char* what() const throw()
 	{
 		return (RED "Error: どの四則演算にも一致しなかった" NORMAL);
+	}
+};
+
+class ErrorNumber : public std::exception
+{
+	const char* what() const throw()
+	{
+		return (RED "Error: Number" NORMAL);
 	}
 };
 
