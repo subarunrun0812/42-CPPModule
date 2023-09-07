@@ -25,8 +25,29 @@ Ford-Johson algorithm
 2行目=ソートされた整数を表示
 3行目=使用したコンテナとアルゴリズムの計算時間を表示
 4行目=使用したコンテナとアルゴリズムの計算時間を表示
-
-
 */
+
+class PmergeMe
+{
+private:
+    std::vector<int> _vec;
+    std::list<int> _list;
+
+public:
+    PmergeMe();
+    ~PmergeMe();
+    PmergeMe(const PmergeMe &pmergeme);
+    PmergeMe &operator=(const PmergeMe &pmergeme);
+    void AssingToVector(int argc, const char **argv);
+    void AssingToList(int argc, const char **argv);
+};
+
+class ErrorParametor : public std::exception
+{
+    const char *what() const throw()
+    {
+        return (RED "Error: 無効な引数が含まれている" NORMAL);
+    }
+};
 
 #endif
