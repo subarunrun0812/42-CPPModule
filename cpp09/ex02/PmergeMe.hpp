@@ -12,6 +12,7 @@
 #include <sstream>
 #include <vector>
 #include <list>
+#include <algorithm>
 
 /*
 TODO:
@@ -40,6 +41,8 @@ public:
     PmergeMe &operator=(const PmergeMe &pmergeme);
     void AssingToVector(int argc, const char **argv);
     void AssingToList(int argc, const char **argv);
+    void MergeInsertionSort_Vector();
+    void MakePairs(std::vector<std::pair<int, int> > &pairs);
 };
 
 class ErrorParametor : public std::exception
