@@ -7,7 +7,7 @@ ifdef DEBUG
 endif
 
 SOURCES = main.cpp\
-		PmergeMe.cpp
+		RPN.cpp
 
 all : $(NAME)
 

@@ -1,5 +1,5 @@
-#ifndef PMERGEME_HPP
-#define PMERGEME_HPP
+#ifndef RPN_HPP
+#define RPN_HPP
 
 #define RED "\x1b[31m"
 #define GREEN "\x1b[32m"
