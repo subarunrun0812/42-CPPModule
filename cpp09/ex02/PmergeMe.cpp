@@ -140,5 +140,6 @@ void PmergeMe::MergeInsertionSort_Vector()
     ShowVector("SMALL VECTOR", smallVec);
     ShowVector("LARGE VECTOR",largeVec);
 
+    // 各リストをsortする
 
 }
