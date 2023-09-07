@@ -27,13 +27,7 @@ void PmergeMe::AssingToVector(int argc, const char** argv)
 		this->_vec.push_back(static_cast<int>(num));
 	}
 
-	std::cout << "Before:\t";
-	std::vector<int>::iterator ite;
-	for (std::vector<int>::iterator ite = _vec.begin(); ite < _vec.end(); *ite++)
-	{
-		std::cout << *ite << " ";
-	}
-	std::cout << std::endl;
+	OutputVec("Before");
 }
 
 void PmergeMe::AssingToList(int argc, const char** argv)
@@ -102,9 +96,8 @@ void PmergeMe::SortPair(std::vector<std::pair<int, int> > pairs)
 #endif
 }
 
-void PmergeMe::ShowVector(std::string str, std::vector<int> vec)
+void PmergeMe::ShowVector(const std::string& str, std::vector<int>& vec)
 {
-#ifdef DEBUG
 	std::cout << LINE << str << LINE << std::endl;
 	std::vector<int>::iterator ite;
 	for (std::vector<int>::iterator ite = vec.begin(); ite < vec.end(); *ite++)
@@ -112,7 +105,6 @@ void PmergeMe::ShowVector(std::string str, std::vector<int> vec)
 		std::cout << *ite << " ";
 	}
 	std::cout << std::endl;
-#endif
 }
 
 void PmergeMe::AssignToLargeAndSmallList(std::vector<std::pair<int, int> > pairs, \
@@ -131,6 +123,66 @@ void PmergeMe::AssignToLargeAndSmallList(std::vector<std::pair<int, int> > pairs
 	}
 }
 
+void PmergeMe::InsertionSort(std::vector<int>& vec)
+{
+	for (size_t i = 1; i < vec.size(); i++)
+	{
+		int key = vec[i];
+		size_t j = i;
+		while ((vec[j - 1] > key) && j > 0)
+		{
+			vec[j] = vec[j - 1];
+			j--;
+		}
+		vec[j] = key;
+	}
+}
+
+
+std::vector<int> PmergeMe::MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec)
+{
+	size_t i = 0;
+	size_t j = 0;
+	std::vector<int> resultVec;
+	while (i < smallVec.size() && j < largeVec.size())
+	{
+		if (smallVec[i] < largeVec[j])
+		{
+			resultVec.push_back(smallVec[i]);
+			i++;
+		}
+		else
+		{
+			resultVec.push_back(largeVec[j]);
+			j++;
+		}
+	}
+	while (i < smallVec.size())
+	{
+		resultVec.push_back(smallVec[i]);
+		i++;
+	}
+	while (j < largeVec.size())
+	{
+		resultVec.push_back(largeVec[j]);
+		j++;
+	}
+	return (resultVec);
+
+}
+
+void PmergeMe::OutputVec(const std::string& str)
+{
+	std::cout << str << ":\t";
+	std::vector<int>::iterator ite;
+	for (std::vector<int>::iterator ite = _vec.begin(); ite < _vec.end(); *ite++)
+	{
+		std::cout << *ite << " ";
+	}
+	std::cout << std::endl;
+
+}
+
 void PmergeMe::MergeInsertionSort_Vector()
 {
 	std::vector<std::pair<int, int> > pairs;
@@ -140,9 +192,13 @@ void PmergeMe::MergeInsertionSort_Vector()
 	std::vector<int> smallVec;
 	std::vector<int> largeVec;
 	AssignToLargeAndSmallList(pairs, smallVec, largeVec);
-	ShowVector("SMALL VECTOR", smallVec);
-	ShowVector("LARGE VECTOR", largeVec);
-
-	// 各リストをsortする
-
+	InsertionSort(smallVec);
+	InsertionSort(largeVec);
+	this->_vec = MergeSmallVecAndLargeVec(smallVec, largeVec);
+	OutputVec("After");
+#ifdef DEBUG
+	ShowVector("SORTED SMALL VECTOR", smallVec);
+	ShowVector("SORTED LARGE VECTOR", largeVec);
+	ShowVector("RESULT", this->_vec);
+#endif
 }

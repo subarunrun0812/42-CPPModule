@@ -2,9 +2,9 @@ NAME = PmergeMe
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-# ifdef DEBUG
+ifdef DEBUG
 	CFLAGS += -DDEBUG
-# endif
+endif
 
 SOURCES = main.cpp\
 		PmergeMe.cpp

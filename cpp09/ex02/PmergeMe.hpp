@@ -31,31 +31,34 @@ Ford-Johson algorithm
 class PmergeMe
 {
 private:
-    std::vector<int> _vec;
-    std::list<int> _list;
+	std::vector<int> _vec;
+	std::list<int> _list;
 
 public:
-    PmergeMe();
-    ~PmergeMe();
-    PmergeMe(const PmergeMe &pmergeme);
-    PmergeMe &operator=(const PmergeMe &pmergeme);
-    void AssingToVector(int argc, const char **argv);
-    void AssingToList(int argc, const char **argv);
-    void MergeInsertionSort_Vector();
-    void MakePairs(std::vector<std::pair<int, int> > &pairs);
-    void SortPair(std::vector<std::pair<int, int> > pairs);
-    void AssignToLargeAndSmallList(std::vector<std::pair<int, int> > pairs,\
-    std::vector<int> &smallVec, std::vector<int> &largeVec);
-    // debug用
-    void ShowVector(std::string str,std::vector<int> vec);
+	PmergeMe();
+	~PmergeMe();
+	PmergeMe(const PmergeMe& pmergeme);
+	PmergeMe& operator=(const PmergeMe& pmergeme);
+	void AssingToVector(int argc, const char** argv);
+	void AssingToList(int argc, const char** argv);
+	void MergeInsertionSort_Vector();
+	void MakePairs(std::vector<std::pair<int, int> >& pairs);
+	void SortPair(std::vector<std::pair<int, int> > pairs);
+	void AssignToLargeAndSmallList(std::vector<std::pair<int, int> > pairs, \
+		std::vector<int>& smallVec, std::vector<int>& largeVec);
+	std::vector<int> MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec);
+	void OutputVec(const std::string& str);
+	// debug用
+	void ShowVector(const std::string& str, std::vector<int>& vec);
+	void InsertionSort(std::vector<int>& vec);
 };
 
 class ErrorParametor : public std::exception
 {
-    const char *what() const throw()
-    {
-        return (RED "Error: 無効な引数が含まれている" NORMAL);
-    }
+	const char* what() const throw()
+	{
+		return (RED "Error: 無効な引数が含まれている" NORMAL);
+	}
 };
 
 #endif
