@@ -81,11 +81,8 @@ void PmergeMe::MakePairs(std::vector<std::pair<int, int> > &pairs)
 #endif
 }
 
-void PmergeMe::MergeInsertionSort_Vector()
+void PmergeMe::SortPair(std::vector<std::pair<int, int> > pairs)
 {
-    std::vector<std::pair<int, int> > pairs;
-    MakePairs(pairs);
-
     for (size_t i = 0; i < pairs.size(); i++)
     {
         if (pairs[i].first > pairs[i].second)
@@ -95,7 +92,6 @@ void PmergeMe::MergeInsertionSort_Vector()
             pairs[i].second = tmp;
         }
     }
-    
 #ifdef DEBUG
     std::cout << LINE "pairをソート" LINE << std::endl;
     for (size_t i = 0; i < pairs.size(); i++)
@@ -104,4 +100,45 @@ void PmergeMe::MergeInsertionSort_Vector()
                   << pairs[i].second << ")" << std::endl;
     }
 #endif
+}
+
+void PmergeMe::ShowVector(std::string str,std::vector<int> vec)
+{
+    #ifdef DEBUG
+    std::cout << LINE << str << LINE << std::endl;
+    std::vector<int>::iterator ite;
+    for (std::vector<int>::iterator ite = vec.begin(); ite < vec.end(); *ite++)
+    {
+        std::cout << *ite << " ";
+    }
+    std::cout << std::endl;
+    #endif
+}
+
+void PmergeMe::AssignToLargeAndSmallList(std::vector<std::pair<int, int> > pairs,\
+std::vector<int> &smallVec, std::vector<int> &largeVec)
+{
+    for (size_t i = 0; i < pairs.size(); i++)
+    {
+        smallVec.push_back(pairs[i].first);
+    }
+    for (size_t i = 0; i < pairs.size(); i++)
+    {
+        largeVec.push_back(pairs[i].second);
+    }
+}
+
+void PmergeMe::MergeInsertionSort_Vector()
+{
+    std::vector<std::pair<int, int> > pairs;
+    MakePairs(pairs);
+
+    // 各ペアの小さい数と大きい数を大小によって2つのリストに代入
+    std::vector<int> smallVec;
+    std::vector<int> largeVec;
+    AssignToLargeAndSmallList(pairs, smallVec, largeVec);
+    ShowVector("SMALL VECTOR", smallVec);
+    ShowVector("LARGE VECTOR",largeVec);
+
+
 }

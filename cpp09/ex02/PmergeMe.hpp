@@ -43,6 +43,11 @@ public:
     void AssingToList(int argc, const char **argv);
     void MergeInsertionSort_Vector();
     void MakePairs(std::vector<std::pair<int, int> > &pairs);
+    void SortPair(std::vector<std::pair<int, int> > pairs);
+    void AssignToLargeAndSmallList(std::vector<std::pair<int, int> > pairs,\
+    std::vector<int> &smallVec, std::vector<int> &largeVec);
+    // debug用
+    void ShowVector(std::string str,std::vector<int> vec);
 };
 
 class ErrorParametor : public std::exception
