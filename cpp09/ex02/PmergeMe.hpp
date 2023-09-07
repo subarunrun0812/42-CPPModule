@@ -60,5 +60,12 @@ class ErrorParametor : public std::exception
 		return (RED "Error: 無効な引数が含まれている" NORMAL);
 	}
 };
+class ErrorDuplicate : public std::exception
+{
+	const char* what() const throw()
+	{
+		return (RED "Error: 数値が重複している" NORMAL);
+	}
+};
 
 #endif

@@ -26,6 +26,17 @@ void PmergeMe::AssingToVector(int argc, const char** argv)
 			throw ErrorParametor();
 		this->_vec.push_back(static_cast<int>(num));
 	}
+	// // 重複のチェック
+	// std::vector<int> tmp_vec = this->_vec;
+	// std::sort(tmp_vec.begin(), tmp_vec.end());
+	// for (size_t i = 1; i < tmp_vec.size(); i++)
+	// {
+	// 	if (tmp_vec[i] == tmp_vec[i - 1])
+	// 	{
+	// 		std::cout << tmp_vec[i] << std::endl;
+	// 		throw ErrorDuplicate();
+	// 	}
+	// }
 
 	OutputVec("Before");
 }
@@ -62,7 +73,7 @@ void PmergeMe::MakePairs(std::vector<std::pair<int, int> >& pairs)
 		}
 		else
 		{
-			pairs.push_back(std::make_pair(*ite, *ite));
+			pairs.push_back(std::make_pair(*ite, -1));
 		}
 	}
 
@@ -116,7 +127,8 @@ void PmergeMe::AssignToLargeAndSmallList(std::vector<std::pair<int, int> > pairs
 	}
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
-		if (pairs[i].first != pairs[i].second)
+		//整数列が奇数だった場合、一番最後のpairsのsecondには-1を代入している
+		if (pairs[i].second != -1)
 		{
 			largeVec.push_back(pairs[i].second);
 		}
@@ -173,7 +185,7 @@ std::vector<int> PmergeMe::MergeSmallVecAndLargeVec(std::vector<int>& smallVec, 
 
 void PmergeMe::OutputVec(const std::string& str)
 {
-	std::cout << str << ":\t";
+	std::cout << GREEN << str << ":\t" NORMAL;
 	std::vector<int>::iterator ite;
 	for (std::vector<int>::iterator ite = _vec.begin(); ite < _vec.end(); *ite++)
 	{
