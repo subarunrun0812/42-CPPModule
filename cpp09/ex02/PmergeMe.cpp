@@ -6,17 +6,17 @@ PmergeMe::PmergeMe()
 PmergeMe::~PmergeMe()
 {
 }
-PmergeMe::PmergeMe(const PmergeMe& pmergeme)
+PmergeMe::PmergeMe(const PmergeMe &pmergeme)
 {
 	(void)pmergeme;
 }
-PmergeMe& PmergeMe::operator=(const PmergeMe& pmergeme)
+PmergeMe &PmergeMe::operator=(const PmergeMe &pmergeme)
 {
 	(void)pmergeme;
 	return (*this);
 }
 
-void PmergeMe::AssingToContainer(int argc, const char** argv)
+void PmergeMe::AssingToContainer(int argc, const char **argv)
 {
 	long num;
 	for (int i = 1; i < argc; i++)
@@ -33,21 +33,16 @@ void PmergeMe::AssingToContainer(int argc, const char** argv)
 		this->_vec.push_back(static_cast<int>(num));
 		this->_list.push_back(static_cast<int>(num));
 	}
-	OutputVec("Before");
-	// std::cout << "Before:\t";
-	// std::list<int>::iterator ite;
-	// for (std::list<int>::iterator ite = _list.begin(); ite != _list.end(); *ite++)
-	// {
-	// 	std::cout << *ite << " ";
-	// }
-	// std::cout << std::endl;
 }
 
+/*
+ ======== Vector ========
+*/
 
-void PmergeMe::MakePairsVec(std::vector<std::pair<int, int> >& pairs)
+void PmergeMe::MakePairsVec(std::vector<std::pair<int, int> > &pairs)
 {
 	for (std::vector<int>::iterator ite = _vec.begin();
-		ite < _vec.end(); ite += 2)
+		 ite < _vec.end(); ite += 2)
 	{
 		// sizeが偶数だった場合
 		if (ite + 1 < _vec.end())
@@ -64,7 +59,7 @@ void PmergeMe::MakePairsVec(std::vector<std::pair<int, int> >& pairs)
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
 		std::cout << "(" << pairs[i].first << ","
-			<< pairs[i].second << ")" << std::endl;
+				  << pairs[i].second << ")" << std::endl;
 	}
 #endif
 }
@@ -85,12 +80,12 @@ void PmergeMe::SortPairVec(std::vector<std::pair<int, int> > pairs)
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
 		std::cout << "(" << pairs[i].first << ","
-			<< pairs[i].second << ")" << std::endl;
+				  << pairs[i].second << ")" << std::endl;
 	}
 #endif
 }
 
-void PmergeMe::ShowVector(const std::string& str, std::vector<int>& vec)
+void PmergeMe::ShowVector(const std::string &str, std::vector<int> &vec)
 {
 	std::cout << LINE << str << LINE << std::endl;
 	std::vector<int>::iterator ite;
@@ -101,8 +96,8 @@ void PmergeMe::ShowVector(const std::string& str, std::vector<int>& vec)
 	std::cout << std::endl;
 }
 
-void PmergeMe::AssignToLargeAndSmallVec(std::vector<std::pair<int, int> > pairs, \
-	std::vector<int>& smallVec, std::vector<int>& largeVec)
+void PmergeMe::AssignToLargeAndSmallVec(std::vector<std::pair<int, int> > pairs,
+										std::vector<int> &smallVec, std::vector<int> &largeVec)
 {
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
@@ -110,7 +105,7 @@ void PmergeMe::AssignToLargeAndSmallVec(std::vector<std::pair<int, int> > pairs,
 	}
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
-		//整数列が奇数だった場合、一番最後のpairsのsecondには-1を代入している
+		// 整数列が奇数だった場合、一番最後のpairsのsecondには-1を代入している
 		if (pairs[i].second != -1)
 		{
 			largeVec.push_back(pairs[i].second);
@@ -118,7 +113,7 @@ void PmergeMe::AssignToLargeAndSmallVec(std::vector<std::pair<int, int> > pairs,
 	}
 }
 
-void PmergeMe::InsertionSortVec(std::vector<int>& vec)
+void PmergeMe::InsertionSortVec(std::vector<int> &vec)
 {
 	for (size_t i = 1; i < vec.size(); i++)
 	{
@@ -133,8 +128,7 @@ void PmergeMe::InsertionSortVec(std::vector<int>& vec)
 	}
 }
 
-
-std::vector<int> PmergeMe::MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec)
+std::vector<int> PmergeMe::MergeSmallVecAndLargeVec(std::vector<int> &smallVec, std::vector<int> &largeVec)
 {
 	size_t i = 0;
 	size_t j = 0;
@@ -163,10 +157,10 @@ std::vector<int> PmergeMe::MergeSmallVecAndLargeVec(std::vector<int>& smallVec, 
 		j++;
 	}
 	return (resultVec);
-
 }
 void PmergeMe::MergeInsertionSort_Vector()
 {
+	OutputVec("Before");
 	std::vector<std::pair<int, int> > pairs;
 	MakePairsVec(pairs);
 
@@ -185,7 +179,7 @@ void PmergeMe::MergeInsertionSort_Vector()
 #endif
 }
 
-void PmergeMe::OutputVec(const std::string& str)
+void PmergeMe::OutputVec(const std::string &str)
 {
 	std::cout << GREEN << str << ":\t" NORMAL;
 	std::vector<int>::iterator ite;
@@ -194,4 +188,155 @@ void PmergeMe::OutputVec(const std::string& str)
 		std::cout << *ite << " ";
 	}
 	std::cout << std::endl;
+}
+
+/*
+ ======== List ========
+*/
+
+void PmergeMe::MakePairsList(std::list<std::pair<int, int> > &pairs)
+{
+	for (std::list<int>::iterator ite = _list.begin();
+		 ite != _list.end();)
+	{
+		int first = *ite++;
+		int second;
+		if (ite != _list.end())
+		{
+			second = *ite++;
+		}
+		else
+			second = -1;
+		pairs.push_back(std::make_pair(first, second));
+	}
+
+#ifdef DEBUG
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		std::cout << "(" << pairs[i].first << ","
+				  << pairs[i].second << ")" << std::endl;
+	}
+#endif
+}
+
+void PmergeMe::SortPairList(std::list<std::pair<int, int> > &pairs)
+{
+	for (std::list<std::pair<int, int> >::iterator ite = pairs.begin(); ite != pairs.end(); ++ite)
+	{
+		if (ite->first > ite->second)
+		{
+			int tmp = ite->first;
+			ite->first = ite->second;
+			ite->second = tmp;
+		}
+	}
+
+#ifdef DEBUG
+	std::cout << LINE "pairをソート" LINE << std::endl;
+	for (std::list<std::pair<int, int> >::iterator ite = pairs.begin(); ite != pairs.end(); ++ite)
+	{
+		std::cout << "(" << ite->first << ","
+				  << ite->second << ")" << std::endl;
+	}
+#endif
+}
+void PmergeMe::AssignToLargeAndSmallList(std::list<std::pair<int, int> >& pairs,
+                                         std::list<int>& smallList, std::list<int>& largeList)
+{
+    for (std::list<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
+    {
+        smallList.push_back(it->first);
+        if (it->second != -1)
+        {
+            largeList.push_back(it->second);
+        }
+    }
+}
+
+void PmergeMe::InsertionSortList(std::list<int>& lst)
+{
+    if (lst.empty())
+        return;
+
+    for (std::list<int>::iterator it = std::next(lst.begin()); it != lst.end(); )
+    {
+        int key = *it;
+        std::list<int>::iterator j = it;
+        std::list<int>::iterator prev_j = std::prev(j);
+        
+        while (j != lst.begin() && *prev_j > key)
+        {
+            *j = *prev_j;
+            --j;
+            if (j != lst.begin()) 
+                prev_j = std::prev(j);
+        }
+        
+        *j = key;
+        it = std::next(it);
+    }
+}
+std::list<int> PmergeMe::MergeSmallListAndLargeList(std::list<int>& smallList, std::list<int>& largeList)
+{
+    std::list<int> resultList;
+    std::list<int>::iterator smallIt = smallList.begin();
+    std::list<int>::iterator largeIt = largeList.begin();
+
+    while (smallIt != smallList.end() && largeIt != largeList.end())
+    {
+        if (*smallIt < *largeIt)
+        {
+            resultList.push_back(*smallIt);
+            ++smallIt;
+        }
+        else
+        {
+            resultList.push_back(*largeIt);
+            ++largeIt;
+        }
+    }
+    
+    while (smallIt != smallList.end())
+    {
+        resultList.push_back(*smallIt);
+        ++smallIt;
+    }
+    while (largeIt != largeList.end())
+    {
+        resultList.push_back(*largeIt);
+        ++largeIt;
+    }
+
+    return resultList;
+}
+
+void PmergeMe::OutputList(const std::string &str)
+{
+    std::cout << GREEN << str << ":\t" NORMAL;
+    for (std::list<int>::iterator ite = _list.begin(); ite != _list.end(); ++ite)
+    {
+        std::cout << *ite << " ";
+    }
+    std::cout << std::endl;
+}
+
+void PmergeMe::MergeInsertionSort_List()
+{
+    OutputList("Before");
+    std::list<std::pair<int, int> > pairs;
+    MakePairsList(pairs); // この関数もlistバージョンに変更する必要がある
+
+    // 各ペアの小さい数と大きい数を大小によって2つのリストに代入
+    std::list<int> smallList;
+    std::list<int> largeList;
+    AssignToLargeAndSmallList(pairs, smallList, largeList);
+    InsertionSortList(smallList); // 以前に変更したlist版の関数を使用
+    InsertionSortList(largeList); // 以前に変更したlist版の関数を使用
+    this->_list = MergeSmallListAndLargeList(smallList, largeList); // _vecも_listに変更する必要がある
+    OutputList("After"); // OutputVecもlist版に変更する必要がある
+#ifdef DEBUG
+    ShowList("SORTED SMALL LIST", smallList); // ShowVectorもlist版に変更する必要がある
+    ShowList("SORTED LARGE LIST", largeList); // ShowVectorもlist版に変更する必要がある
+    ShowList("RESULT", this->_list); // ShowVectorもlist版に変更する必要がある
+#endif
 }

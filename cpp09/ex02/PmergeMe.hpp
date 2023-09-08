@@ -41,6 +41,7 @@ public:
 	PmergeMe(const PmergeMe& pmergeme);
 	PmergeMe& operator=(const PmergeMe& pmergeme);
 	void AssingToContainer(int argc, const char** argv);
+    // ======== Vector ========
 	void MergeInsertionSort_Vector();
 	void MakePairsVec(std::vector<std::pair<int, int> >& pairs);
 	void SortPairVec(std::vector<std::pair<int, int> > pairs);
@@ -48,9 +49,21 @@ public:
 		std::vector<int>& smallVec, std::vector<int>& largeVec);
 	std::vector<int> MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec);
 	void OutputVec(const std::string& str);
+	void InsertionSortVec(std::vector<int>& vec);
 	// debug用
 	void ShowVector(const std::string& str, std::vector<int>& vec);
-	void InsertionSortVec(std::vector<int>& vec);
+    // ======== List ========
+	void MergeInsertionSort_List();
+	void MakePairsList(std::list<std::pair<int, int> >& pairs);
+	void SortPairList(std::list<std::pair<int, int> > &pairs);
+	void AssignToLargeAndSmallList(std::list<std::pair<int, int> > &pairs, \
+		std::list<int>& smallList, std::list<int>& largeList);
+	std::list<int> MergeSmallListAndLargeList(std::list<int>& smallVec, std::list<int>& largeVec);
+	void InsertionSortList(std::list<int>& lst);
+	void OutputList(const std::string& str);
+	// debug用
+	void ShowList(const std::string& str, std::vector<int>& vec);
+
 };
 
 class ErrorParametor : public std::exception
