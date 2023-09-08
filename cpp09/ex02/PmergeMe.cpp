@@ -8,11 +8,13 @@ PmergeMe::~PmergeMe()
 }
 PmergeMe::PmergeMe(const PmergeMe &pmergeme)
 {
-	(void)pmergeme;
+	this->_vec = pmergeme._vec;
+	this->_list = pmergeme._list;
 }
 PmergeMe &PmergeMe::operator=(const PmergeMe &pmergeme)
 {
-	(void)pmergeme;
+	this->_vec = pmergeme._vec;
+	this->_list = pmergeme._list;
 	return (*this);
 }
 
@@ -324,16 +326,14 @@ void PmergeMe::MergeInsertionSort_List()
 {
     OutputList("Before");
     std::list<std::pair<int, int> > pairs;
-    MakePairsList(pairs); // この関数もlistバージョンに変更する必要がある
-
-    // 各ペアの小さい数と大きい数を大小によって2つのリストに代入
+    MakePairsList(pairs);
     std::list<int> smallList;
     std::list<int> largeList;
     AssignToLargeAndSmallList(pairs, smallList, largeList);
-    InsertionSortList(smallList); // 以前に変更したlist版の関数を使用
-    InsertionSortList(largeList); // 以前に変更したlist版の関数を使用
-    this->_list = MergeSmallListAndLargeList(smallList, largeList); // _vecも_listに変更する必要がある
-    OutputList("After"); // OutputVecもlist版に変更する必要がある
+    InsertionSortList(smallList);
+    InsertionSortList(largeList);
+    this->_list = MergeSmallListAndLargeList(smallList, largeList);
+    OutputList("After");
 #ifdef DEBUG
     ShowList("SORTED SMALL LIST", smallList); // ShowVectorもlist版に変更する必要がある
     ShowList("SORTED LARGE LIST", largeList); // ShowVectorもlist版に変更する必要がある

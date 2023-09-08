@@ -61,6 +61,7 @@ public:
 	int stringToInt(const std::string& str);
 	float stringToFloat(const std::string& str);
 
+};
 	class ErrorData : public std::exception
 	{
 	public:
@@ -92,6 +93,5 @@ public:
 			return (RED "型変換に失敗した" NORMAL);
 		}
 	};
-};
 
 #endif

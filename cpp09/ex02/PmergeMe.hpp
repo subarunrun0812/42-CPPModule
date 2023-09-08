@@ -61,8 +61,6 @@ public:
 	std::list<int> MergeSmallListAndLargeList(std::list<int>& smallVec, std::list<int>& largeVec);
 	void InsertionSortList(std::list<int>& lst);
 	void OutputList(const std::string& str);
-	// debug用
-	void ShowList(const std::string& str, std::vector<int>& vec);
 
 };
 
