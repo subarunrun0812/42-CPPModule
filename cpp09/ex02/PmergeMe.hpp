@@ -13,6 +13,7 @@
 #include <vector>
 #include <list>
 #include <algorithm>
+#include <ctime>
 
 /*
 TODO:
@@ -39,18 +40,17 @@ public:
 	~PmergeMe();
 	PmergeMe(const PmergeMe& pmergeme);
 	PmergeMe& operator=(const PmergeMe& pmergeme);
-	void AssingToVector(int argc, const char** argv);
-	void AssingToList(int argc, const char** argv);
+	void AssingToContainer(int argc, const char** argv);
 	void MergeInsertionSort_Vector();
-	void MakePairs(std::vector<std::pair<int, int> >& pairs);
-	void SortPair(std::vector<std::pair<int, int> > pairs);
-	void AssignToLargeAndSmallList(std::vector<std::pair<int, int> > pairs, \
+	void MakePairsVec(std::vector<std::pair<int, int> >& pairs);
+	void SortPairVec(std::vector<std::pair<int, int> > pairs);
+	void AssignToLargeAndSmallVec(std::vector<std::pair<int, int> > pairs, \
 		std::vector<int>& smallVec, std::vector<int>& largeVec);
 	std::vector<int> MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec);
 	void OutputVec(const std::string& str);
 	// debug用
 	void ShowVector(const std::string& str, std::vector<int>& vec);
-	void InsertionSort(std::vector<int>& vec);
+	void InsertionSortVec(std::vector<int>& vec);
 };
 
 class ErrorParametor : public std::exception
