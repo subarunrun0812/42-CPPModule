@@ -99,7 +99,7 @@ void PmergeMe::InsertionSortVec(std::vector<int>& vec, int num)
 	vec[j + 1] = key;
 }
 
-int PmergeMe::BinarySearch(const std::vector<int>& vec, int target)
+int PmergeMe::BinarySearchVector(const std::vector<int>& vec, int target)
 {
 	int left = 0;
 	int right = vec.size() - 1;
@@ -133,7 +133,7 @@ std::vector<int> PmergeMe::MergeSmallVecAndLargeVec(std::vector<int>& smallVec, 
 	}
 	for (size_t i = 0; i < smallVec.size(); i++)
 	{
-		int position = BinarySearch(largeVec, smallVec[i]);
+		int position = BinarySearchVector(largeVec, smallVec[i]);
 		largeVec.insert(largeVec.begin() + position, smallVec[i]);
 	}
 	return (largeVec);
@@ -154,150 +154,122 @@ void PmergeMe::MergeInsertionSort_Vector()
 
 /*
  ======== List ========
+*/
 
-void PmergeMe::MakePairsList(std::list<std::pair<int, int> >& pairs)
+void PmergeMe::OutputList(const std::string& str,std::list<int> list)
 {
-	for (std::list<int>::iterator ite = _list.begin();
-		ite != _list.end();)
-	{
-		int first = *ite++;
-		int second;
-		if (ite != _list.end())
-		{
-			second = *ite++;
-		}
-		else
-			second = -1;
-		pairs.push_back(std::make_pair(first, second));
-	}
-
-#ifdef DEBUG
-	for (std::list<int>::iterator ite = _list.begin();
-		ite != _list.end();)
-	{
-		std::cout << "(" << pairs[*ite].first << ","
-			<< pairs[*ite].second << ")" << std::endl;
-	}
-#endif
+    std::cout << GREEN << str << ":\t" NORMAL;
+    for (std::list<int>::iterator ite = list.begin(); ite != list.end(); ++ite)
+        std::cout << *ite << " ";
+    std::cout << std::endl;
 }
 
-void PmergeMe::SortPairList(std::list<std::pair<int, int> >& pairs)
+void PmergeMe::PrepareList(std::list<std::pair<int, int> >& pairs,
+    std::list<int>& smallList, std::list<int>& largeList)
 {
-	for (std::list<std::pair<int, int> >::iterator ite = pairs.begin(); ite != pairs.end(); ++ite)
-	{
-		if (ite->first > ite->second)
-		{
-			int tmp = ite->first;
-			ite->first = ite->second;
-			ite->second = tmp;
-		}
-	}
+    for (std::list<int>::iterator ite = _list.begin();
+        ite != _list.end(); ++ite)
+    {
+        int firstValue = *ite;
+        if (++ite == _list.end()) {
+            pairs.push_back(std::make_pair(firstValue, -1));
+            smallList.push_back(firstValue);
+            return;
+        }
+        int secondValue = *ite;
 
-#ifdef DEBUG
-	std::cout << LINE "pairをソート" LINE << std::endl;
-	for (std::list<std::pair<int, int> >::iterator ite = pairs.begin(); ite != pairs.end(); ++ite)
-	{
-		std::cout << "(" << ite->first << ","
-			<< ite->second << ")" << std::endl;
-	}
-#endif
-}
-void PmergeMe::AssignToLargeAndSmallList(std::list<std::pair<int, int> >& pairs,
-	std::list<int>& smallList, std::list<int>& largeList)
-{
-	for (std::list<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
-	{
-		smallList.push_back(it->first);
-		if (it->second != -1)
-		{
-			largeList.push_back(it->second);
-		}
-	}
+        if (firstValue > secondValue)
+            std::swap(firstValue, secondValue);
+
+        pairs.push_back(std::make_pair(firstValue, secondValue));
+        smallList.push_back(firstValue);
+        largeList.push_back(secondValue);
+    }
 }
 
-void PmergeMe::InsertionSortList(std::list<int>& lst)
+
+
+
+void PmergeMe::InsertionSortList(std::list<int>& lst, std::list<int>::iterator it)
 {
-	if (lst.empty())
+    if (it == lst.begin())
 		return;
 
-	for (std::list<int>::iterator it = std::next(lst.begin()); it != lst.end(); )
-	{
-		int key = *it;
-		std::list<int>::iterator j = it;
-		std::list<int>::iterator prev_j = std::prev(j);
+    std::list<int>::iterator prev_it = it;
+    --prev_it;
+    InsertionSortList(lst, prev_it);
 
-		while (j != lst.begin() && *prev_j > key)
-		{
-			*j = *prev_j;
-			--j;
-			if (j != lst.begin())
-				prev_j = std::prev(j);
-		}
-
-		*j = key;
-		it = std::next(it);
-	}
-}
-std::list<int> PmergeMe::MergeSmallListAndLargeList(std::list<int>& smallList, std::list<int>& largeList)
-{
-	std::list<int> resultList;
-	std::list<int>::iterator smallIt = smallList.begin();
-	std::list<int>::iterator largeIt = largeList.begin();
-
-	while (smallIt != smallList.end() && largeIt != largeList.end())
-	{
-		if (*smallIt < *largeIt)
-		{
-			resultList.push_back(*smallIt);
-			++smallIt;
-		}
-		else
-		{
-			resultList.push_back(*largeIt);
-			++largeIt;
-		}
-	}
-
-	while (smallIt != smallList.end())
-	{
-		resultList.push_back(*smallIt);
-		++smallIt;
-	}
-	while (largeIt != largeList.end())
-	{
-		resultList.push_back(*largeIt);
-		++largeIt;
-	}
-
-	return resultList;
+    while (it != lst.begin() && *prev_it > *it)
+    {
+        std::iter_swap(prev_it, it);
+        --it;
+        if (it != lst.begin())
+			--prev_it;
+    }
 }
 
-void PmergeMe::OutputList(const std::string& str)
+std::list<int>::iterator PmergeMe::BinarySearchList(std::list<int>& lst, int target)
 {
-	std::cout << GREEN << str << ":\t" NORMAL;
-	for (std::list<int>::iterator ite = _list.begin(); ite != _list.end(); ++ite)
-	{
-		std::cout << *ite << " ";
-	}
-	std::cout << std::endl;
+    std::list<int>::iterator left = lst.begin();
+    std::list<int>::iterator right = lst.end();
+    --right;
+
+    int count = 0;
+    for (std::list<int>::iterator it = left; it != right; ++it)
+        count++;
+
+    while (count > 0)
+    {
+        std::list<int>::iterator middle = left;
+		 for (int i = 0; i < count / 2; ++i)
+            ++middle;
+
+        if (*middle == target)
+            return middle;
+
+        if (*middle < target)
+        {
+            left = middle;
+            ++left;
+            count -= (count / 2) + 1;
+        }
+        else
+            count /= 2;
+    }
+
+    return left;
+}
+
+std::list<int> PmergeMe::MergeSmallListAndLargeList(std::list<int>& smallList, std::list<int>& largeList,
+    std::list<std::pair<int, int> >& pairs)
+{
+    for (std::list<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
+    {
+        if (largeList.front() == it->second)
+        {
+            largeList.push_front(it->first);
+            smallList.remove(it->first);
+            break;
+        }
+    }
+    for (std::list<int>::iterator it = smallList.begin(); it != smallList.end(); ++it)
+    {
+        std::list<int>::iterator pos = BinarySearchList(largeList, *it);
+        largeList.insert(pos, *it);
+    }
+    return largeList;
 }
 
 void PmergeMe::MergeInsertionSort_List()
 {
-	OutputList("Before");
-	std::list<std::pair<int, int> > pairs;
-	MakePairsList(pairs);
-	std::list<int> smallList;
-	std::list<int> largeList;
-	AssignToLargeAndSmallList(pairs, smallList, largeList);
-	InsertionSortList(smallList);
-	InsertionSortList(largeList);
-	this->_list = MergeSmallListAndLargeList(smallList, largeList);
-	OutputList("After");
-#ifdef DEBUG
-	ShowList("SORTED SMALL LIST", smallList); // ShowVectorもlist版に変更する必要がある
-	ShowList("SORTED LARGE LIST", largeList); // ShowVectorもlist版に変更する必要がある
-	ShowList("RESULT", this->_list); // ShowVectorもlist版に変更する必要がある
-#endif
+    OutputList("Before",this->_list);
+    std::list<std::pair<int, int> > pairs;
+    std::list<int> smallList;
+    std::list<int> largeList;
+    PrepareList(pairs, smallList, largeList);
+    std::list<int>::iterator end = largeList.end();
+	--end;
+	InsertionSortList(largeList, end);
+    this->_list = MergeSmallListAndLargeList(smallList, largeList, pairs);
+    OutputList("After",this->_list);
 }
-*/

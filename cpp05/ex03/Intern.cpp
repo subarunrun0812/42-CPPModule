@@ -42,7 +42,8 @@ AForm *Intern::makeForm(std::string name, std::string target)
         {
             new PresidentialPardonForm(target),
             new RobotomyRequestForm(target),
-            new ShrubberyCreationForm(target)};
+            new ShrubberyCreationForm(target)
+        };
     int flag = -1;
     for (size_t i = 0; i < 3; i++)
     {
