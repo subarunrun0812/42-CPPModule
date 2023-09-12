@@ -44,10 +44,10 @@ public:
 	// ======== Vector ========
 	void MergeInsertionSort_Vector();
 	void MakePairsVec(std::vector<std::pair<int, int> >& pairs);
-	void SortPairVec(std::vector<std::pair<int, int> >& pairs);
 	void AssignToLargeAndSmallVec(std::vector<std::pair<int, int> >& pairs, \
 		std::vector<int>& smallVec, std::vector<int>& largeVec);
-	std::vector<int> MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec);
+	std::vector<int> MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec
+	,std::vector<std::pair<int, int> >& pairs);
 	void OutputVec(const std::string& str);
 	void InsertionSortVec(std::vector<int>& vec, int num);
 	// debug用
@@ -61,7 +61,8 @@ public:
 	std::list<int> MergeSmallListAndLargeList(std::list<int>& smallVec, std::list<int>& largeVec);
 	void InsertionSortList(std::list<int>& lst);
 	void OutputList(const std::string& str);
-
+	int stringToInt(const std::string &str);
+	int binary_search(const std::vector<int> &vec, int target);
 };
 
 class ErrorParametor : public std::exception
@@ -72,6 +73,14 @@ class ErrorParametor : public std::exception
 	}
 };
 class ErrorDuplicate : public std::exception
+{
+	const char* what() const throw()
+	{
+		return (RED "Error: 数値が重複している" NORMAL);
+	}
+};
+
+class ErrorConversion : public std::exception
 {
 	const char* what() const throw()
 	{
