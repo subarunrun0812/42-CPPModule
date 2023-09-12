@@ -64,6 +64,17 @@ void PmergeMe::ShowVector(const std::string& str, std::vector<int>& vec)
 	std::cout << std::endl;
 }
 
+void PmergeMe::OutputVec(const std::string& str)
+{
+	std::cout << GREEN << str << ":\t" NORMAL;
+	std::vector<int>::iterator ite;
+	for (std::vector<int>::iterator ite = _vec.begin(); ite < _vec.end(); *ite++)
+	{
+		std::cout << *ite << " ";
+	}
+	std::cout << std::endl;
+}
+
 void PmergeMe::PrepareVec(std::vector<std::pair<int, int> >& pairs,
 	std::vector<int>& smallVec, std::vector<int>& largeVec)
 {
@@ -162,23 +173,8 @@ void PmergeMe::MergeInsertionSort_Vector()
 	InsertionSortVec(largeVec, largeVec.size());
 	this->_vec = MergeSmallVecAndLargeVec(smallVec, largeVec,pairs);
 	OutputVec("After");
-#ifdef DEBUG
-	ShowVector("SORTED SMALL VECTOR", smallVec);
-	ShowVector("SORTED LARGE VECTOR", largeVec);
-	ShowVector("RESULT", this->_vec);
-#endif
 }
 
-void PmergeMe::OutputVec(const std::string& str)
-{
-	std::cout << GREEN << str << ":\t" NORMAL;
-	std::vector<int>::iterator ite;
-	for (std::vector<int>::iterator ite = _vec.begin(); ite < _vec.end(); *ite++)
-	{
-		std::cout << *ite << " ";
-	}
-	std::cout << std::endl;
-}
 
 /*
  ======== List ========

@@ -47,10 +47,11 @@ public:
 		std::vector<int>& smallVec, std::vector<int>& largeVec);
 	std::vector<int> MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec
 	,std::vector<std::pair<int, int> >& pairs);
-	void OutputVec(const std::string& str);
 	void InsertionSortVec(std::vector<int>& vec, int num);
-	// debug用
+	void OutputVec(const std::string& str);
 	void ShowVector(const std::string& str, std::vector<int>& vec);
+
+
 	// ======== List ========
 	void MergeInsertionSort_List();
 	void MakePairsList(std::list<std::pair<int, int> >& pairs);
@@ -63,6 +64,7 @@ public:
 	int stringToInt(const std::string &str);
 	int binary_search(const std::vector<int> &vec, int target);
 };
+
 
 class ErrorParametor : public std::exception
 {
