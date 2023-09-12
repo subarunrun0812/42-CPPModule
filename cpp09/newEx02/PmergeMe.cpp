@@ -53,23 +53,6 @@ void PmergeMe::AssingToContainer(int argc, const char** argv)
  ======== Vector ========
 */
 
-void PmergeMe::MakePairsVec(std::vector<std::pair<int, int> >& pairs)
-{
-	for (std::vector<int>::iterator ite = _vec.begin();
-		ite < _vec.end(); ite += 2)
-	{
-		// sizeが偶数だった場合
-		if (ite + 1 < _vec.end())
-		{
-			pairs.push_back(std::make_pair(*ite, *(ite + 1)));
-		}
-		else
-		{
-			pairs.push_back(std::make_pair(*ite, -1));
-		}
-	}
-}
-
 void PmergeMe::ShowVector(const std::string& str, std::vector<int>& vec)
 {
 	std::cout << LINE << str << LINE << std::endl;
@@ -81,29 +64,26 @@ void PmergeMe::ShowVector(const std::string& str, std::vector<int>& vec)
 	std::cout << std::endl;
 }
 
-void PmergeMe::AssignToLargeAndSmallVec(std::vector<std::pair<int, int> >& pairs,
+void PmergeMe::PrepareVec(std::vector<std::pair<int, int> >& pairs,
 	std::vector<int>& smallVec, std::vector<int>& largeVec)
 {
-	for (size_t i = 0; i < pairs.size(); i++)
+	for (std::vector<int>::iterator ite = _vec.begin();
+		ite < _vec.end(); ite += 2)
 	{
-		if (pairs[i].first > pairs[i].second)
+		int firstValue = *ite;
+		int secondValue = -1;
+		if (ite + 1 < _vec.end())
+			secondValue = *(ite + 1);
+		if (firstValue > secondValue)
 		{
-			int tmp = pairs[i].first;
-			pairs[i].first = pairs[i].second;
-			pairs[i].second = tmp;
+			std::swap(firstValue, secondValue);
 		}
-	}
-	for (size_t i = 0; i < pairs.size(); i++)
-	{
-		// 整数列が奇数だった場合、一番最後のpairsのfirstには-1を代入している
-		if (pairs[i].first != -1)
-		{
-		smallVec.push_back(pairs[i].first);
-		}
-	}
-	for (size_t i = 0; i < pairs.size(); i++)
-	{
-			largeVec.push_back(pairs[i].second);
+
+		pairs.push_back(std::make_pair(firstValue, secondValue));
+
+		if (firstValue != -1)
+			smallVec.push_back(firstValue);
+		largeVec.push_back(secondValue);
 	}
 }
 
@@ -175,12 +155,10 @@ void PmergeMe::MergeInsertionSort_Vector()
 {
 	OutputVec("Before");
 	std::vector<std::pair<int, int> > pairs;
-	MakePairsVec(pairs);
-
-	// 各ペアの小さい数と大きい数を大小によって2つのリストに代入
 	std::vector<int> smallVec;
 	std::vector<int> largeVec;
-	AssignToLargeAndSmallVec(pairs, smallVec, largeVec);
+	// 各ペアの小さい数と大きい数を大小によって2つのリストに代入
+	PrepareVec(pairs, smallVec, largeVec);
 	InsertionSortVec(largeVec, largeVec.size());
 	this->_vec = MergeSmallVecAndLargeVec(smallVec, largeVec,pairs);
 	OutputVec("After");

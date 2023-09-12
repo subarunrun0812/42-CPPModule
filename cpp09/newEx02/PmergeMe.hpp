@@ -43,8 +43,7 @@ public:
 	void AssingToContainer(int argc, const char** argv);
 	// ======== Vector ========
 	void MergeInsertionSort_Vector();
-	void MakePairsVec(std::vector<std::pair<int, int> >& pairs);
-	void AssignToLargeAndSmallVec(std::vector<std::pair<int, int> >& pairs, \
+	void PrepareVec(std::vector<std::pair<int, int> >& pairs, \
 		std::vector<int>& smallVec, std::vector<int>& largeVec);
 	std::vector<int> MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec
 	,std::vector<std::pair<int, int> >& pairs);
