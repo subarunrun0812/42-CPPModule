@@ -48,8 +48,8 @@ public:
 	std::vector<int> MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec
 	,std::vector<std::pair<int, int> >& pairs);
 	void InsertionSortVec(std::vector<int>& vec, int num);
+	int BinarySearch(const std::vector<int> &vec, int target);
 	void OutputVec(const std::string& str);
-	void ShowVector(const std::string& str, std::vector<int>& vec);
 
 
 	// ======== List ========
@@ -62,7 +62,6 @@ public:
 	void InsertionSortList(std::list<int>& lst);
 	void OutputList(const std::string& str);
 	int stringToInt(const std::string &str);
-	int binary_search(const std::vector<int> &vec, int target);
 };
 
 

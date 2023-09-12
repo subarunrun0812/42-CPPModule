@@ -53,25 +53,12 @@ void PmergeMe::AssingToContainer(int argc, const char** argv)
  ======== Vector ========
 */
 
-void PmergeMe::ShowVector(const std::string& str, std::vector<int>& vec)
-{
-	std::cout << LINE << str << LINE << std::endl;
-	std::vector<int>::iterator ite;
-	for (std::vector<int>::iterator ite = vec.begin(); ite < vec.end(); *ite++)
-	{
-		std::cout << *ite << " ";
-	}
-	std::cout << std::endl;
-}
-
 void PmergeMe::OutputVec(const std::string& str)
 {
 	std::cout << GREEN << str << ":\t" NORMAL;
 	std::vector<int>::iterator ite;
 	for (std::vector<int>::iterator ite = _vec.begin(); ite < _vec.end(); *ite++)
-	{
 		std::cout << *ite << " ";
-	}
 	std::cout << std::endl;
 }
 
@@ -86,9 +73,7 @@ void PmergeMe::PrepareVec(std::vector<std::pair<int, int> >& pairs,
 		if (ite + 1 < _vec.end())
 			secondValue = *(ite + 1);
 		if (firstValue > secondValue)
-		{
 			std::swap(firstValue, secondValue);
-		}
 
 		pairs.push_back(std::make_pair(firstValue, secondValue));
 
@@ -103,22 +88,18 @@ void PmergeMe::InsertionSortVec(std::vector<int>& vec, int num)
 {
 	if (num <= 1)
 		return;
-
 	InsertionSortVec(vec, num - 1);
-
 	int key = vec[num - 1];
 	int j = num - 2;
-
 	while (j >= 0 && vec[j] > key)
 	{
 		vec[j + 1] = vec[j];
 		j--;
 	}
 	vec[j + 1] = key;
-
 }
 
-int PmergeMe::binary_search(const std::vector<int>& vec, int target)
+int PmergeMe::BinarySearch(const std::vector<int>& vec, int target)
 {
 	int left = 0;
 	int right = vec.size() - 1;
@@ -139,36 +120,31 @@ int PmergeMe::binary_search(const std::vector<int>& vec, int target)
 std::vector<int> PmergeMe::MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec\
 ,std::vector<std::pair<int, int> >& pairs)
 {
-	// largeVecの初めの要素とペアとなった要素をresultVecをlargeVecに挿入
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
 		if (largeVec[0] == pairs[i].second)
 		{
-			//TODO: paris[i].firstの要素を一番先頭に挿入する
 			largeVec.insert(largeVec.begin(), pairs[i].first);
-			std::vector<int>::iterator ite = std::find(smallVec.begin(),
-												smallVec.end(), pairs[i].first);
+			std::vector<int>::iterator ite = std::find(smallVec.begin(),smallVec.end(), pairs[i].first);
 			if (ite != smallVec.end())
 				smallVec.erase(ite);
 			break;
 		}
 	}
-	// バイナリサーチを使って、smallVecの要素をlargeVecに挿入していく
 	for (size_t i = 0; i < smallVec.size(); i++)
 	{
-		int position = binary_search(largeVec, smallVec[i]);
+		int position = BinarySearch(largeVec, smallVec[i]);
 		largeVec.insert(largeVec.begin() + position, smallVec[i]);
 	}
-
 	return (largeVec);
 }
+
 void PmergeMe::MergeInsertionSort_Vector()
 {
 	OutputVec("Before");
 	std::vector<std::pair<int, int> > pairs;
 	std::vector<int> smallVec;
 	std::vector<int> largeVec;
-	// 各ペアの小さい数と大きい数を大小によって2つのリストに代入
 	PrepareVec(pairs, smallVec, largeVec);
 	InsertionSortVec(largeVec, largeVec.size());
 	this->_vec = MergeSmallVecAndLargeVec(smallVec, largeVec,pairs);
