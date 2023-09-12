@@ -47,7 +47,7 @@ public:
 	std::vector<int> MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec,std::vector<std::pair<int, int> >& pairs);
 	void InsertionSortVec(std::vector<int>& vec, int num);
 	int BinarySearchVector(const std::vector<int> &vec, int target);
-	void OutputVec(const std::string& str);
+	void OutputVec(const std::string& str,std::vector<int> vec);
 	int stringToInt(const std::string &str);
 
 	// ======== List ========

@@ -53,11 +53,11 @@ void PmergeMe::AssingToContainer(int argc, const char** argv)
  ======== Vector ========
 */
 
-void PmergeMe::OutputVec(const std::string& str)
+void PmergeMe::OutputVec(const std::string& str,std::vector<int> vec)
 {
 	std::cout << GREEN << str << ":\t" NORMAL;
 	std::vector<int>::iterator ite;
-	for (std::vector<int>::iterator ite = _vec.begin(); ite < _vec.end(); *ite++)
+	for (std::vector<int>::iterator ite = vec.begin(); ite < vec.end(); *ite++)
 		std::cout << *ite << " ";
 	std::cout << std::endl;
 }
@@ -65,6 +65,11 @@ void PmergeMe::OutputVec(const std::string& str)
 void PmergeMe::PrepareVec(std::vector<std::pair<int, int> >& pairs,
 	std::vector<int>& smallVec, std::vector<int>& largeVec)
 {
+		if (_vec.begin() + 1 == _vec.end())
+		{
+			largeVec.push_back(_vec[0]);
+			return;
+		}
 	for (std::vector<int>::iterator ite = _vec.begin();
 		ite < _vec.end(); ite += 2)
 	{
@@ -120,9 +125,12 @@ int PmergeMe::BinarySearchVector(const std::vector<int>& vec, int target)
 std::vector<int> PmergeMe::MergeSmallVecAndLargeVec(std::vector<int>& smallVec, std::vector<int>& largeVec\
 ,std::vector<std::pair<int, int> >& pairs)
 {
+	std::vector<int>::iterator ite = std::find(smallVec.begin(), smallVec.end(), -1);
+	if (ite != smallVec.end())
+		smallVec.erase(ite);
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
-		if (largeVec[0] == pairs[i].second)
+		if (largeVec[0] == pairs[i].second && pairs[i].first != -1)
 		{
 			largeVec.insert(largeVec.begin(), pairs[i].first);
 			std::vector<int>::iterator ite = std::find(smallVec.begin(),smallVec.end(), pairs[i].first);
@@ -141,14 +149,14 @@ std::vector<int> PmergeMe::MergeSmallVecAndLargeVec(std::vector<int>& smallVec, 
 
 void PmergeMe::MergeInsertionSort_Vector()
 {
-	OutputVec("Before");
+	OutputVec("Before",this->_vec);
 	std::vector<std::pair<int, int> > pairs;
 	std::vector<int> smallVec;
 	std::vector<int> largeVec;
 	PrepareVec(pairs, smallVec, largeVec);
 	InsertionSortVec(largeVec, largeVec.size());
 	this->_vec = MergeSmallVecAndLargeVec(smallVec, largeVec,pairs);
-	OutputVec("After");
+	OutputVec("After",this->_vec);
 }
 
 
@@ -212,7 +220,6 @@ std::list<int>::iterator PmergeMe::BinarySearchList(std::list<int>& lst, int tar
 {
     std::list<int>::iterator left = lst.begin();
     std::list<int>::iterator right = lst.end();
-    --right;
 
     int count = 0;
     for (std::list<int>::iterator it = left; it != right; ++it)
@@ -248,7 +255,9 @@ std::list<int> PmergeMe::MergeSmallListAndLargeList(std::list<int>& smallList, s
         if (largeList.front() == it->second)
         {
             largeList.push_front(it->first);
-            smallList.remove(it->first);
+            std::list<int>::iterator ite = std::find(smallList.begin(),smallList.end(), it->first);
+			if (ite != smallList.end())
+				smallList.erase(ite);
             break;
         }
     }
