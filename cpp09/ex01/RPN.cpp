@@ -1,5 +1,17 @@
 #include "RPN.hpp"
 
+
+float stringToFloat(const std::string& str)
+{
+	std::istringstream iss(str);
+	float fl;
+	if (!(iss >> fl))
+	{
+		throw ErrorTokenize();
+	}
+	return fl;
+}
+
 bool isOperator(const char& token)
 {
 	return (token == '+' || token == '-' \
@@ -49,9 +61,9 @@ int ReversePolishNotation(std::string line)
 		}
 		else
 		{
-			if (std::stoi(token) < 0 || 10 < std::stoi(token))
+			if (stringToFloat(token) < 0 || 10 < stringToFloat(token))
 				throw ErrorNumber();
-			st.push(std::stoi(token));
+			st.push(stringToFloat(token));
 		}
 
 	}
