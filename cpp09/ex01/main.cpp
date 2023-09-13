@@ -18,5 +18,4 @@ int main(int argc, char const* argv[])
 		std::cerr << e.what() << '\n';
 	}
 
-
 }
