@@ -229,3 +229,20 @@ int BX::Currency(std::string fileName)
 	Read_File(fileName, &BX::IsValidData);
 	return (SUCCESS);
 }
+
+const char* ErrorData::what() const throw()
+{
+	return (RED "Error: bad input" NORMAL);
+}
+const char* LargeANumber::what() const throw()
+{
+	return (RED "Error: too large a number" NORMAL);
+}
+const char* SmallANumber::what() const throw()
+{
+	return (RED "Error: not a positive number" NORMAL);
+}
+const char* TypeConversionFailure::what() const throw()
+{
+	return (RED "型変換に失敗した" NORMAL);
+}

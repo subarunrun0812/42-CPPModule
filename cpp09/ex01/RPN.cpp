@@ -75,3 +75,21 @@ int ReversePolishNotation(std::string line)
 	return st.top();
 }
 
+const char* ErrorTokenize::what() const throw()
+{
+	return (RED "Error: tokenize" NORMAL);
+}
+const char* ErrorResult::what() const throw()
+{
+	return (RED "Error: result" NORMAL);
+}
+
+const char* ErrorOperator::what() const throw()
+{
+	return (RED "Error: どの四則演算にも一致しなかった" NORMAL);
+}
+
+const char* ErrorNumber::what() const throw()
+{
+	return (RED "Error: Number" NORMAL);
+}

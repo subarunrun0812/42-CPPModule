@@ -62,36 +62,24 @@ public:
 	float stringToFloat(const std::string& str);
 
 };
-	class ErrorData : public std::exception
-	{
-	public:
-		const char* what() const throw()
-		{
-			return (RED "Error: bad input" NORMAL);
-		}
-	};
-	class LargeANumber : public std::exception
-	{
-	public:
-		const char* what() const throw()
-		{
-			return (RED "Error: too large a number" NORMAL);
-		}
-	};
-	class SmallANumber : public std::exception
-	{
-	public:
-		const char* what() const throw()
-		{
-			return (RED "Error: not a positive number" NORMAL);
-		}
-	};
-	class TypeConversionFailure : public std::exception
-	{
-		const char* what() const throw()
-		{
-			return (RED "型変換に失敗した" NORMAL);
-		}
-	};
+class ErrorData : public std::exception
+{
+public:
+	const char* what() const throw();
+};
+class LargeANumber : public std::exception
+{
+public:
+	const char* what() const throw();
+};
+class SmallANumber : public std::exception
+{
+public:
+	const char* what() const throw();
+};
+class TypeConversionFailure : public std::exception
+{
+	const char* what() const throw();
+};
 
 #endif

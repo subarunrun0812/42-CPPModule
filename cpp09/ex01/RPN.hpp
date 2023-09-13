@@ -17,34 +17,22 @@
 int ReversePolishNotation(std::string line);
 class ErrorTokenize : public std::exception
 {
-	const char* what() const throw()
-	{
-		return (RED "Error: tokenize" NORMAL);
-	}
+	const char* what() const throw();
 };
 
 class ErrorResult : public std::exception
 {
-	const char* what() const throw()
-	{
-		return (RED "Error: result" NORMAL);
-	}
+	const char* what() const throw();
 };
 
 class ErrorOperator : public std::exception
 {
-	const char* what() const throw()
-	{
-		return (RED "Error: どの四則演算にも一致しなかった" NORMAL);
-	}
+	const char* what() const throw();
 };
 
 class ErrorNumber : public std::exception
 {
-	const char* what() const throw()
-	{
-		return (RED "Error: Number" NORMAL);
-	}
+	const char* what() const throw();
 };
 
 #endif
